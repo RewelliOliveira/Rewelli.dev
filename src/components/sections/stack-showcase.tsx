@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { EASE_OUT } from "@/components/motion/reveal";
 import { stacks, type StackId } from "@/data/stacks";
 import { cn } from "@/lib/utils";
 
@@ -14,14 +15,15 @@ export function StackShowcase({
   totalProjects: number;
 }) {
   const t = useTranslations("stacks");
-  const [activeId, setActiveId] = useState<StackId>(stacks[0].id);
-  const active = stacks.find((stack) => stack.id === activeId) ?? stacks[0];
+  const visibleStacks = stacks.filter((stack) => (usage[stack.id] ?? 0) > 0);
+  const [activeId, setActiveId] = useState<StackId>(visibleStacks[0].id);
+  const active = visibleStacks.find((stack) => stack.id === activeId) ?? visibleStacks[0];
   const ActiveIcon = active.icon;
 
   return (
     <div className="mt-8 grid gap-4 rounded-xl border bg-card p-4 md:grid-cols-2 md:gap-6 md:p-5">
       <ul aria-label={t("list")} className="grid grid-cols-5 gap-2 self-start">
-        {stacks.map(({ id, name, icon: Icon }) => {
+        {visibleStacks.map(({ id, name, icon: Icon }) => {
           const isActive = id === activeId;
           return (
             <li key={id}>
@@ -33,13 +35,21 @@ export function StackShowcase({
                 onFocus={() => setActiveId(id)}
                 onClick={() => setActiveId(id)}
                 className={cn(
-                  "flex aspect-square w-full items-center justify-center rounded-lg border transition-[translate,color,border-color,background-color] duration-200",
+                  "relative flex aspect-square w-full items-center justify-center rounded-lg border transition-[translate,color] duration-200",
                   isActive
-                    ? "-translate-y-1 border-foreground/30 bg-muted text-foreground"
+                    ? "-translate-y-1 text-foreground"
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                <Icon className="size-5 sm:size-6" aria-hidden />
+                {isActive && (
+                  <motion.span
+                    layoutId="stack-active"
+                    aria-hidden
+                    className="absolute -inset-px rounded-lg border border-primary bg-muted"
+                    transition={{ duration: 0.35, ease: EASE_OUT }}
+                  />
+                )}
+                <Icon className="relative size-5 sm:size-6" aria-hidden />
               </button>
             </li>
           );
