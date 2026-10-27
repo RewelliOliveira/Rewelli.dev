@@ -1,16 +1,9 @@
-import Image from "next/image";
-import { ArrowUpRight, ExternalLink, GitBranch, Lock } from "lucide-react";
+import { ExternalLink, GitBranch, Lock } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { projects, type Project } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { localize } from "@/lib/localized";
-import {
-  getDomain,
-  getProjectSections,
-  getRepoName,
-  getStacks,
-  renderStackIcon,
-} from "@/lib/projects";
+import { getDomain, getRepoName, getStacks } from "@/lib/projects";
 import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
@@ -19,12 +12,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { ProjectTabs } from "./project-tabs";
+import { ProjectCarousel } from "./project-carousel";
 
 export async function Projects() {
   const locale = await getLocale();
   const t = await getTranslations("projects");
-  const sections = getProjectSections();
+  const shown = projects.filter((project) => project.image);
 
   return (
     <section aria-labelledby="projects-title">
@@ -36,25 +29,20 @@ export async function Projects() {
           {t("title")}
         </h2>
         <p className="font-mono text-sm text-muted-foreground tabular-nums">
-          {t("count", { count: projects.length })}
+          {t("count", { count: shown.length })}
         </p>
       </Reveal>
-      <ProjectTabs
-        label={t("categoriesLabel")}
-        tabs={sections.map(({ category, items }) => ({
-          id: category,
-          label: t(`categories.${category}`),
-          count: items.length,
-          content: (
-            <ol className="space-y-6">
-              {items.map(({ project, index }) => (
-                <Reveal as="li" key={project.slug} delay={index * 0.06}>
-                  <ProjectPanel project={project} locale={locale} />
-                </Reveal>
-              ))}
-            </ol>
-          ),
+      <ProjectCarousel
+        label={t("carouselLabel")}
+        hint={t("hint")}
+        items={shown.map((project) => ({
+          image: project.image,
+          alt: t("preview", { name: project.name }),
+          title: project.name,
         }))}
+        details={shown.map((project) => (
+          <ProjectPanel key={project.slug} project={project} locale={locale} />
+        ))}
       />
     </section>
   );
@@ -71,163 +59,117 @@ async function ProjectPanel({
   const tCommon = await getTranslations("common");
   const newTab = <span className="sr-only">{tCommon("newTab")}</span>;
 
-  const preview = project.image ? (
-    <Image
-      src={project.image}
-      alt={t("preview", { name: project.name })}
-      fill
-      sizes="(min-width: 768px) 460px, 100vw"
-      className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-    />
-  ) : (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-muted-foreground">
-      {renderStackIcon(project.stacks[0], "size-14")}
-      <span className="font-mono text-xs">
-        {project.repos.length === 1
-          ? getRepoName(project.repos[0].url)
-          : project.slug}
-      </span>
-    </div>
-  );
-
   return (
     <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-colors duration-300 hover:border-foreground/20">
-      <div className="grid gap-6 p-4 md:grid-cols-[1.15fr_1fr] md:gap-8 md:p-5">
-        {project.url ? (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block aspect-16/10 overflow-hidden rounded-md border bg-muted md:aspect-auto md:min-h-72"
-          >
-            {preview}
-            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-sm border bg-background px-2 py-1 text-xs font-medium text-foreground transition-colors group-hover:text-primary">
-              {t("openSite")}
-              <ArrowUpRight className="size-3.5" aria-hidden />
-            </span>
-            {newTab}
-          </a>
-        ) : (
-          <div className="relative aspect-16/10 overflow-hidden rounded-md border bg-muted md:aspect-auto md:min-h-72">
-            {preview}
-          </div>
-        )}
-
+      <div className="grid gap-6 p-4 md:grid-cols-[1fr_1.1fr] md:gap-8 md:p-5">
         <div className="min-w-0">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="font-heading text-xl font-medium tracking-tight">
-              {project.name}
-            </h3>
-            {project.featured && (
-              <span className="mt-0.5 shrink-0 rounded-sm border border-primary/40 bg-primary/10 px-1.5 py-0.5 font-mono text-xs text-primary">
-                {t("featured")}
-              </span>
-            )}
-          </div>
+          <h3 className="font-heading text-xl font-medium tracking-tight">
+            {project.name}
+          </h3>
           <p className="mt-1.5 text-muted-foreground">
             {localize(project.description, locale)}
           </p>
+        </div>
 
-          <dl className="mt-5 grid grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] gap-x-4 gap-y-3 border-t pt-5 text-sm">
-            <dt className="text-muted-foreground">{t("site")}</dt>
-            <dd className="min-w-0 font-mono">
-              {project.url ? (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
-                >
-                  <span className="truncate">{getDomain(project.url)}</span>
-                  <ExternalLink className="size-3.5 shrink-0" aria-hidden />
-                  {newTab}
-                </a>
-              ) : (
-                <span className="text-muted-foreground">—</span>
+        <dl className="grid grid-cols-[minmax(0,5.5rem)_minmax(0,1fr)] gap-x-3 sm:grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] sm:gap-x-4 gap-y-3 border-t pt-5 text-sm md:border-t-0 md:border-l md:pt-0 md:pl-8">
+          <dt className="text-muted-foreground">{t("site")}</dt>
+          <dd className="min-w-0 font-mono">
+            {project.url ? (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
+              >
+                <span className="truncate">{getDomain(project.url)}</span>
+                <ExternalLink className="size-3.5 shrink-0" aria-hidden />
+                {newTab}
+              </a>
+            ) : (
+              <span className="text-muted-foreground">—</span>
+            )}
+          </dd>
+
+          <dt className="text-muted-foreground">{t("status")}</dt>
+          <dd className="flex items-center gap-2">
+            <span
+              aria-hidden
+              className={cn(
+                "size-2 rounded-full",
+                project.url ? "bg-online" : "bg-muted-foreground/50",
               )}
-            </dd>
+            />
+            {project.url ? t("online") : t("codeOnly")}
+          </dd>
 
-            <dt className="text-muted-foreground">{t("status")}</dt>
-            <dd className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className={cn(
-                  "size-2 rounded-full",
-                  project.url ? "bg-online" : "bg-muted-foreground/50",
-                )}
-              />
-              {project.url ? t("online") : t("codeOnly")}
-            </dd>
-
-            <dt className="text-muted-foreground">
-              {t("repo", { count: project.repos.length })}
-            </dt>
-            <dd className="min-w-0 font-mono">
-              {project.repos.length > 0 ? (
-                <ul className="space-y-1.5">
-                  {project.repos.map((repo) => (
-                    <li key={repo.url}>
-                      <a
-                        href={repo.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
-                      >
-                        {repo.part ? (
-                          <span className="shrink-0 rounded-sm border px-1.5 text-xs text-muted-foreground">
-                            {t(`parts.${repo.part}`)}
-                          </span>
-                        ) : (
-                          <GitBranch
-                            className="size-3.5 shrink-0"
-                            aria-hidden
-                          />
-                        )}
-                        <span className="truncate">
-                          {repo.part
-                            ? getRepoName(repo.url).split("/").pop()
-                            : getRepoName(repo.url)}
+          <dt className="text-muted-foreground">
+            {t("repo", { count: project.repos.length })}
+          </dt>
+          <dd className="min-w-0 font-mono">
+            {project.repos.length > 0 ? (
+              <ul className="space-y-1.5">
+                {project.repos.map((repo) => (
+                  <li key={repo.url}>
+                    <a
+                      href={repo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
+                    >
+                      {repo.part ? (
+                        <span className="shrink-0 rounded-sm border px-1.5 text-xs text-muted-foreground">
+                          {t(`parts.${repo.part}`)}
                         </span>
-                        {newTab}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-                  <Lock className="size-3.5 shrink-0" aria-hidden />
-                  {t("private")}
-                </span>
-              )}
-            </dd>
-
-            <dt className="text-muted-foreground">{t("builtWith")}</dt>
-            <dd>
-              <ul className="flex flex-wrap gap-1.5">
-                {getStacks(project.stacks).map(({ id, name, icon: Icon, color }) => (
-                  <li key={id}>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span
-                          tabIndex={0}
-                          aria-label={name}
-                          className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors hover:bg-muted focus-visible:bg-muted"
-                        >
-                          <Icon
-                            className={cn("size-4", stackIconBrand)}
-                            style={stackIconVars(color)}
-                            aria-hidden
-                          />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent sideOffset={4}>{name}</TooltipContent>
-                    </Tooltip>
+                      ) : (
+                        <GitBranch
+                          className="size-3.5 shrink-0"
+                          aria-hidden
+                        />
+                      )}
+                      <span className="truncate">
+                        {repo.part
+                          ? getRepoName(repo.url).split("/").pop()
+                          : getRepoName(repo.url)}
+                      </span>
+                      {newTab}
+                    </a>
                   </li>
                 ))}
               </ul>
-            </dd>
-          </dl>
-        </div>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <Lock className="size-3.5 shrink-0" aria-hidden />
+                {t("private")}
+              </span>
+            )}
+          </dd>
+
+          <dt className="text-muted-foreground">{t("builtWith")}</dt>
+          <dd>
+            <ul className="flex flex-wrap gap-1.5">
+              {getStacks(project.stacks).map(({ id, name, icon: Icon, color }) => (
+                <li key={id}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span
+                        tabIndex={0}
+                        aria-label={name}
+                        className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors hover:bg-muted focus-visible:bg-muted"
+                      >
+                        <Icon
+                          className={cn("size-4", stackIconBrand)}
+                          style={stackIconVars(color)}
+                          aria-hidden
+                        />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent sideOffset={4}>{name}</TooltipContent>
+                  </Tooltip>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </dl>
       </div>
     </article>
   );

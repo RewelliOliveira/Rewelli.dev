@@ -14,8 +14,6 @@
   "projects": {
     "title": "Projetos",
     "count": "{count, plural, one {# projeto} other {# projetos}}",
-    "featured": "Destaque",
-    "openSite": "Abrir site",
     "preview": "Prévia de {name}",
     "site": "Site",
     "status": "Status",
@@ -24,15 +22,12 @@
     "repo": "{count, plural, =0 {Repositório} one {Repositório} other {Repositórios}}",
     "private": "Privado",
     "builtWith": "Feito com",
-    "categories": {
-      "apps": "Aplicações",
-      "landing": "Landing pages"
-    },
     "parts": {
       "frontend": "front",
       "backend": "back"
     },
-    "categoriesLabel": "Categorias de projetos"
+    "carouselLabel": "Carrossel de projetos",
+    "hint": "Role, deslize ou arraste para passar · clique no card da frente para ver os detalhes"
   },
   "stacks": {
     "title": "Stacks",
