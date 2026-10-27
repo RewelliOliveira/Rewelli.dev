@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
+import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
 import { profile } from "@/data/profile";
 import { localize } from "@/lib/localized";
 
@@ -18,7 +19,7 @@ export async function Hero() {
     <section className="grid items-center gap-10 pt-10 md:grid-cols-[1fr_320px] md:gap-16 md:pt-16">
       <div>
         <h1 className="font-heading text-5xl font-bold tracking-tight text-balance sm:text-6xl">
-          {profile.name}
+          <RandomLetterSwap label={profile.name} swapLabel={profile.role} />
         </h1>
         <p className="mt-5 max-w-md text-lg text-pretty text-muted-foreground">
           {localize(profile.tagline, locale)}
