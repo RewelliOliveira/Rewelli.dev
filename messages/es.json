@@ -39,8 +39,7 @@
     "experienceTab": "Experiencia",
     "certificatesTab": "Certificados",
     "tabsLabel": "Experiencia y certificados",
-    "verify": "Verificar",
-    "certificatePreview": "Certificado {name}"
+    "verify": "Verificar"
   },
   "footer": {
     "cta": "¿Hablamos? Escríbeme un correo.",

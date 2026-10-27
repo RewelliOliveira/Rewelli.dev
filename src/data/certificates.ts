@@ -11,13 +11,6 @@ export type Certificate = {
 
 export const certificates: Certificate[] = [
   {
-    slug: "poscomp-2026",
-    name: { pt: "POSCOMP 2026", en: "POSCOMP 2026", es: "POSCOMP 2026" },
-    issuer: "Sociedade Brasileira de Computação",
-    date: "08/2026",
-    image: "/certificates/poscomp-2026.webp",
-  },
-  {
     slug: "google-ai-essentials",
     name: { pt: "Google AI Essentials", en: "Google AI Essentials", es: "Google AI Essentials" },
     issuer: "Google · Coursera",

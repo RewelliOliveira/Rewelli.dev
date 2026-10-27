@@ -39,8 +39,7 @@
     "experienceTab": "Experience",
     "certificatesTab": "Certificates",
     "tabsLabel": "Experience and certificates",
-    "verify": "Verify",
-    "certificatePreview": "{name} certificate"
+    "verify": "Verify"
   },
   "footer": {
     "cta": "Want to talk? Send me an email.",
