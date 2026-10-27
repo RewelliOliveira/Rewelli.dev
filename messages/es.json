@@ -42,7 +42,8 @@
     "verify": "Verificar"
   },
   "footer": {
-    "cta": "¿Hablamos? Escríbeme un correo.",
+    "cta": "¿Hablamos? Escríbeme por correo o WhatsApp.",
+    "email": "Enviar correo",
     "copy": "Copiar",
     "copied": "Copiado"
   }

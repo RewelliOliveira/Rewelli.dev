@@ -5,6 +5,7 @@ export type Profile = {
   role: Localized;
   tagline: Localized;
   email: string;
+  whatsapp: { display: string; number: string };
   github: string;
   linkedin: string;
 };
@@ -22,6 +23,7 @@ export const profile: Profile = {
     es: "Creo aplicaciones web de punta a punta, de la base de datos a la interfaz, con React, TypeScript y Node.js para retail, finanzas y salud.",
   },
   email: "rewellidev@gmail.com",
+  whatsapp: { display: "+55 88 9489-5443", number: "558894895443" },
   github: "https://github.com/RewelliOliveira",
   linkedin: "https://www.linkedin.com/in/reulixs",
 };

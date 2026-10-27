@@ -42,7 +42,8 @@
     "verify": "Verificar"
   },
   "footer": {
-    "cta": "Quer conversar? Me manda um e-mail.",
+    "cta": "Quer conversar? Me chama por e-mail ou WhatsApp.",
+    "email": "Enviar e-mail",
     "copy": "Copiar",
     "copied": "Copiado"
   }
