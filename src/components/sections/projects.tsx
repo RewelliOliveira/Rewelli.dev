@@ -2,6 +2,7 @@ import { ExternalLink, Lock } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { getLocale, getTranslations } from "next-intl/server";
 import { projects, type Project } from "@/data/projects";
+import { brandColors } from "@/data/stacks";
 import type { Locale } from "@/i18n/routing";
 import { localize } from "@/lib/localized";
 import { getDomain, getRepoName, getStacks } from "@/lib/projects";
@@ -124,7 +125,7 @@ async function ProjectPanel({
                       ) : (
                         <SiGithub
                           className={cn("size-3.5 shrink-0", stackIconBrand)}
-                          style={stackIconVars("#181717")}
+                          style={stackIconVars(brandColors.github)}
                           aria-hidden
                         />
                       )}

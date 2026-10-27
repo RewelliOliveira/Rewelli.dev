@@ -1,6 +1,9 @@
 import type { CSSProperties } from "react";
 
-const ACTIVE_SURFACE = { light: "#f0f0f2", dark: "#1a1a1d" } as const;
+const SURFACES = {
+  light: ["#ffffff", "#f4f4f4", "#ececec", "#ebeffd"],
+  dark: ["#161616", "#0a0a0b", "#222222", "#171d36"],
+} as const;
 const MIN_CONTRAST = 3;
 
 function luminance(hex: string) {
@@ -17,6 +20,10 @@ export function contrastRatio(a: string, b: string) {
   return (high + 0.05) / (low + 0.05);
 }
 
+function readsOn(color: string, surfaces: readonly string[]) {
+  return surfaces.every((surface) => contrastRatio(color, surface) >= MIN_CONTRAST);
+}
+
 function mix(hex: string, target: number, amount: number) {
   const value = parseInt(hex.slice(1), 16);
   const channels = [value >> 16, (value >> 8) & 255, value & 255].map((channel) =>
@@ -29,7 +36,7 @@ function mix(hex: string, target: number, amount: number) {
 function darkenForLight(color: string) {
   for (let amount = 0; amount <= 1; amount += 0.05) {
     const candidate = mix(color, 0, amount);
-    if (contrastRatio(candidate, ACTIVE_SURFACE.light) >= MIN_CONTRAST) return candidate;
+    if (readsOn(candidate, SURFACES.light)) return candidate;
   }
   return undefined;
 }
@@ -37,7 +44,7 @@ function darkenForLight(color: string) {
 export function stackIconVars(color: string): CSSProperties {
   return {
     "--icon-light": darkenForLight(color),
-    "--icon-dark": contrastRatio(color, ACTIVE_SURFACE.dark) >= MIN_CONTRAST ? color : undefined,
+    "--icon-dark": readsOn(color, SURFACES.dark) ? color : undefined,
   } as CSSProperties;
 }
 

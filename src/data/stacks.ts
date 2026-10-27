@@ -59,4 +59,11 @@ export const stacks = [
   { id: "gemini", name: "Gemini", category: "ai", icon: SiGooglegemini, color: "#8E75B2" },
 ] as const satisfies readonly Stack[];
 
+export const brandColors = {
+  github: "#181717",
+  linkedin: "#0A66C2",
+  gmail: "#EA4335",
+  whatsapp: "#25D366",
+} as const;
+
 export type StackId = (typeof stacks)[number]["id"];

@@ -4,6 +4,7 @@ import { SiGithub } from "react-icons/si";
 import { Reveal } from "@/components/motion/reveal";
 import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
 import { profile } from "@/data/profile";
+import { brandColors } from "@/data/stacks";
 import { localize } from "@/lib/localized";
 import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
@@ -14,8 +15,8 @@ export async function Hero() {
   const t = await getTranslations("common");
 
   const links = [
-    { label: "GitHub", href: profile.github, icon: SiGithub, color: "#181717" },
-    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin, color: "#0A66C2" },
+    { label: "GitHub", href: profile.github, icon: SiGithub, color: brandColors.github },
+    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin, color: brandColors.linkedin },
   ];
 
   return (
@@ -42,7 +43,7 @@ export async function Hero() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
+                className="inline-flex items-center gap-2 rounded-md border border-input bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
               >
                 <Icon
                   className={cn("size-4", stackIconBrand)}
