@@ -14,10 +14,12 @@ export async function Experience() {
       <ol className="mt-8 divide-y border-y">
         {experience.map((item) => (
           <li
-            key={`${item.period}-${item.place}`}
+            key={`${item.start}-${item.place}`}
             className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6"
           >
-            <p className="font-mono text-sm text-muted-foreground">{item.period}</p>
+            <p className="font-mono text-sm text-muted-foreground">
+              {item.start} — {item.end ?? t("present")}
+            </p>
             <div>
               <p className="font-medium">
                 {localize(item.role, locale)}

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Desarrollador front-end. Portafolio con proyectos, stacks y experiencia.",
+    "description": "Desarrollador full-stack. Portafolio con proyectos, stacks y experiencia.",
     "ogLocale": "es_ES"
   },
   "common": {
@@ -38,7 +38,8 @@
     }
   },
   "experience": {
-    "title": "Experiencia"
+    "title": "Experiencia",
+    "present": "actual"
   },
   "footer": {
     "cta": "¿Hablamos? Escríbeme un correo.",

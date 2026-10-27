@@ -11,11 +11,11 @@ export type Profile = {
 export const profile: Profile = {
   name: "Rewelli Oliveira",
   tagline: {
-    pt: "[Frase curta sobre o que você faz, ex.: crio interfaces web rápidas, acessíveis e bem cuidadas.]",
-    en: "[Short line about what you do, e.g. I build fast, accessible and carefully crafted web interfaces.]",
-    es: "[Frase corta sobre lo que haces, ej.: creo interfaces web rápidas, accesibles y bien cuidadas.]",
+    pt: "Desenvolvedor full-stack. Crio aplicações web de ponta a ponta com React, TypeScript e Node.js para varejo, finanças e saúde.",
+    en: "Full-stack developer. I build end-to-end web applications with React, TypeScript and Node.js for retail, finance and healthcare.",
+    es: "Desarrollador full-stack. Creo aplicaciones web de punta a punta con React, TypeScript y Node.js para retail, finanzas y salud.",
   },
-  email: "[PREENCHER]@email.com",
-  github: "https://github.com/[PREENCHER]",
-  linkedin: "https://www.linkedin.com/in/[PREENCHER]",
+  email: "rewellidev@gmail.com",
+  github: "https://github.com/RewelliOliveira",
+  linkedin: "https://www.linkedin.com/in/reulixs",
 };
