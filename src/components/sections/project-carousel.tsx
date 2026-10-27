@@ -25,7 +25,7 @@ export function ProjectCarousel({
 
   return (
     <div className="mt-6 sm:mt-8">
-      <div className="h-70 w-full sm:h-[600px]">
+      <div className="h-70 w-full sm:h-150">
         <CardSwap
           items={items}
           ariaLabel={label}
@@ -50,13 +50,14 @@ export function ProjectCarousel({
             setOpenIndex(null);
           }}
           onCardClick={(index) => {
-            if (index === front) setOpenIndex((open) => (open === index ? null : index));
+            if (index === front)
+              setOpenIndex((open) => (open === index ? null : index));
           }}
         />
       </div>
 
       <p
-        className="mt-2 text-center font-mono text-xs text-muted-foreground transition-opacity duration-300 data-[hidden]:opacity-0"
+        className="mt-2 text-center font-mono text-xs text-muted-foreground transition-opacity duration-300 data-hidden:opacity-0"
         data-hidden={openIndex !== null ? "" : undefined}
       >
         {hint}
