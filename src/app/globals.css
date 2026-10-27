@@ -5,48 +5,50 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f6f6f3;
-  --foreground: #17181a;
+  --background: #f3f5f7;
+  --foreground: #0b1220;
   --card: #ffffff;
-  --card-foreground: #17181a;
-  --popover: #17181a;
-  --popover-foreground: #f6f6f3;
-  --primary: #2f4fd8;
+  --card-foreground: #0b1220;
+  --popover: #0b1220;
+  --popover-foreground: #f3f5f7;
+  --primary: #07738a;
   --primary-foreground: #ffffff;
-  --secondary: #ebebe6;
-  --secondary-foreground: #17181a;
-  --muted: #ebebe6;
-  --muted-foreground: #6b6e72;
-  --accent: #ebebe6;
-  --accent-foreground: #17181a;
+  --secondary: #e8ecf1;
+  --secondary-foreground: #0b1220;
+  --muted: #e8ecf1;
+  --muted-foreground: #556070;
+  --accent: #e8ecf1;
+  --accent-foreground: #0b1220;
   --destructive: #c4372f;
-  --border: #dcdcd6;
-  --input: #dcdcd6;
-  --ring: #2f4fd8;
-  --online: #1f9d6b;
+  --border: #d8dee6;
+  --input: #d8dee6;
+  --ring: #07738a;
+  --online: #16a36f;
+  --highlight: #ff6b4a;
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: #111214;
-  --foreground: #ececea;
-  --card: #17181b;
-  --card-foreground: #ececea;
-  --popover: #ececea;
-  --popover-foreground: #111214;
-  --primary: #8ea4ff;
-  --primary-foreground: #111214;
-  --secondary: #212327;
-  --secondary-foreground: #ececea;
-  --muted: #212327;
-  --muted-foreground: #9a9da1;
-  --accent: #212327;
-  --accent-foreground: #ececea;
+  --background: #0a0f17;
+  --foreground: #e6ebf2;
+  --card: #111823;
+  --card-foreground: #e6ebf2;
+  --popover: #e6ebf2;
+  --popover-foreground: #0a0f17;
+  --primary: #3cc8e0;
+  --primary-foreground: #0a0f17;
+  --secondary: #18212e;
+  --secondary-foreground: #e6ebf2;
+  --muted: #18212e;
+  --muted-foreground: #8b97a8;
+  --accent: #18212e;
+  --accent-foreground: #e6ebf2;
   --destructive: #f07167;
-  --border: #2c2e33;
-  --input: #2c2e33;
-  --ring: #8ea4ff;
-  --online: #4fd1a1;
+  --border: #222c3a;
+  --input: #222c3a;
+  --ring: #3cc8e0;
+  --online: #3fd69a;
+  --highlight: #ff8466;
 }
 
 @theme inline {
@@ -69,6 +71,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-online: var(--online);
+  --color-highlight: var(--highlight);
 
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
