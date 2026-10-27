@@ -23,8 +23,19 @@
     "online": "En línea",
     "codeOnly": "Solo código",
     "year": "Año",
-    "repo": "Repositorio",
-    "builtWith": "Hecho con"
+    "repo": "{count, plural, =0 {Repositorio} one {Repositorio} other {Repositorios}}",
+    "private": "Privado",
+    "builtWith": "Hecho con",
+    "categories": {
+      "apps": "Aplicaciones",
+      "landing": "Landing pages",
+      "ai": "Machine Learning e IA"
+    },
+    "parts": {
+      "frontend": "front",
+      "backend": "back"
+    },
+    "categoriesLabel": "Categorías de proyectos"
   },
   "stacks": {
     "title": "Stacks",
@@ -33,6 +44,7 @@
     "categories": {
       "language": "lenguaje",
       "framework": "framework",
+      "library": "biblioteca",
       "styling": "estilos",
       "tool": "herramienta"
     }

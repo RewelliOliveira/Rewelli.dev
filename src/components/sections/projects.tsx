@@ -1,15 +1,23 @@
 import Image from "next/image";
-import { ArrowUpRight, ExternalLink, GitBranch } from "lucide-react";
+import { ArrowUpRight, ExternalLink, GitBranch, Lock } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { projects, type Project } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { localize } from "@/lib/localized";
-import { getDomain, getRepoName, getStackNames } from "@/lib/projects";
+import {
+  getDomain,
+  getProjectSections,
+  getRepoName,
+  getStackNames,
+  renderStackIcon,
+} from "@/lib/projects";
 import { cn } from "@/lib/utils";
+import { ProjectTabs } from "./project-tabs";
 
 export async function Projects() {
   const locale = await getLocale();
   const t = await getTranslations("projects");
+  const sections = getProjectSections();
 
   return (
     <section aria-labelledby="projects-title">
@@ -21,13 +29,23 @@ export async function Projects() {
           {t("count", { count: projects.length })}
         </p>
       </div>
-      <ol className="mt-8 space-y-6">
-        {projects.map((project, index) => (
-          <li key={project.slug}>
-            <ProjectPanel project={project} index={index} locale={locale} />
-          </li>
-        ))}
-      </ol>
+      <ProjectTabs
+        label={t("categoriesLabel")}
+        tabs={sections.map(({ category, items }) => ({
+          id: category,
+          label: t(`categories.${category}`),
+          count: items.length,
+          content: (
+            <ol className="space-y-6">
+              {items.map(({ project, index }) => (
+                <li key={project.slug}>
+                  <ProjectPanel project={project} index={index} locale={locale} />
+                </li>
+              ))}
+            </ol>
+          ),
+        }))}
+      />
     </section>
   );
 }
@@ -45,7 +63,7 @@ async function ProjectPanel({
   const tCommon = await getTranslations("common");
   const newTab = <span className="sr-only">{tCommon("newTab")}</span>;
 
-  const preview = (
+  const preview = project.image ? (
     <Image
       src={project.image}
       alt={t("preview", { name: project.name })}
@@ -53,6 +71,13 @@ async function ProjectPanel({
       sizes="(min-width: 768px) 460px, 100vw"
       className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
     />
+  ) : (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-muted-foreground">
+      {renderStackIcon(project.stacks[0], "size-14")}
+      <span className="font-mono text-xs">
+        {project.repos.length === 1 ? getRepoName(project.repos[0].url) : project.slug}
+      </span>
+    </div>
   );
 
   return (
@@ -126,18 +151,41 @@ async function ProjectPanel({
             <dt className="text-muted-foreground">{t("year")}</dt>
             <dd className="font-mono">{project.year}</dd>
 
-            <dt className="text-muted-foreground">{t("repo")}</dt>
+            <dt className="text-muted-foreground">
+              {t("repo", { count: project.repos.length })}
+            </dt>
             <dd className="min-w-0 font-mono">
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
-              >
-                <GitBranch className="size-3.5 shrink-0" aria-hidden />
-                <span className="truncate">{getRepoName(project.repo)}</span>
-                {newTab}
-              </a>
+              {project.repos.length > 0 ? (
+                <ul className="space-y-1.5">
+                  {project.repos.map((repo) => (
+                    <li key={repo.url}>
+                      <a
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
+                      >
+                        {repo.part ? (
+                          <span className="shrink-0 rounded border px-1.5 text-xs text-muted-foreground">
+                            {t(`parts.${repo.part}`)}
+                          </span>
+                        ) : (
+                          <GitBranch className="size-3.5 shrink-0" aria-hidden />
+                        )}
+                        <span className="truncate">
+                          {repo.part ? getRepoName(repo.url).split("/").pop() : getRepoName(repo.url)}
+                        </span>
+                        {newTab}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                  <Lock className="size-3.5 shrink-0" aria-hidden />
+                  {t("private")}
+                </span>
+              )}
             </dd>
 
             <dt className="text-muted-foreground">{t("builtWith")}</dt>

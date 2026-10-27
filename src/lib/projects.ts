@@ -1,13 +1,31 @@
-import { projects } from "@/data/projects";
+import { createElement } from "react";
+import { projectCategories, projects } from "@/data/projects";
 import { stacks, type StackId } from "@/data/stacks";
 
-const stackNames = new Map<string, string>(stacks.map((stack) => [stack.id, stack.name]));
+const stacksById = new Map<string, (typeof stacks)[number]>(
+  stacks.map((stack) => [stack.id, stack]),
+);
 
 export function getStackNames(ids: StackId[]) {
-  return ids.map((id) => stackNames.get(id) ?? id);
+  return ids.map((id) => stacksById.get(id)?.name ?? id);
 }
 
-/** Quantos projetos usam cada stack. */
+export function renderStackIcon(id: StackId, className: string) {
+  const icon = stacksById.get(id)?.icon;
+  return icon ? createElement(icon, { className, "aria-hidden": true }) : null;
+}
+
+export function getProjectSections() {
+  return projectCategories
+    .map((category) => ({
+      category,
+      items: projects
+        .filter((project) => project.category === category)
+        .map((project, index) => ({ project, index })),
+    }))
+    .filter((section) => section.items.length > 0);
+}
+
 export function getStackUsage() {
   const usage: Record<string, number> = {};
   for (const project of projects) {
@@ -16,12 +34,10 @@ export function getStackUsage() {
   return usage;
 }
 
-/** "https://abyss-one-phi.vercel.app/" -> "abyss-one-phi.vercel.app" */
 export function getDomain(url: string) {
   return new URL(url).hostname.replace(/^www\./, "");
 }
 
-/** "https://github.com/user/repo" -> "user/repo" */
 export function getRepoName(url: string) {
   return url.replace(/^https?:\/\/(www\.)?github\.com\//, "").replace(/\/$/, "");
 }

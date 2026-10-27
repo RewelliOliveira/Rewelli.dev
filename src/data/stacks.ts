@@ -1,18 +1,21 @@
 import type { IconType } from "react-icons";
 import {
-  SiCss,
-  SiFigma,
-  SiGit,
-  SiHtml5,
-  SiJavascript,
-  SiNextdotjs,
+  SiDocker,
+  SiFastapi,
+  SiGreensock,
+  SiJupyter,
+  SiLangchain,
+  SiMui,
+  SiPostgresql,
+  SiPython,
   SiReact,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
+  SiVite,
 } from "react-icons/si";
 
-export type StackCategory = "language" | "framework" | "styling" | "tool";
+export type StackCategory = "language" | "framework" | "library" | "styling" | "tool";
 
 export type Stack = {
   id: string;
@@ -22,15 +25,18 @@ export type Stack = {
 };
 
 export const stacks = [
-  { id: "html", name: "HTML", category: "language", icon: SiHtml5 },
-  { id: "css", name: "CSS", category: "styling", icon: SiCss },
-  { id: "javascript", name: "JavaScript", category: "language", icon: SiJavascript },
   { id: "typescript", name: "TypeScript", category: "language", icon: SiTypescript },
+  { id: "python", name: "Python", category: "language", icon: SiPython },
   { id: "react", name: "React", category: "framework", icon: SiReact },
-  { id: "nextjs", name: "Next.js", category: "framework", icon: SiNextdotjs },
+  { id: "fastapi", name: "FastAPI", category: "framework", icon: SiFastapi },
+  { id: "langchain", name: "LangChain", category: "library", icon: SiLangchain },
+  { id: "gsap", name: "GSAP", category: "library", icon: SiGreensock },
   { id: "tailwind", name: "Tailwind", category: "styling", icon: SiTailwindcss },
-  { id: "git", name: "Git", category: "tool", icon: SiGit },
-  { id: "figma", name: "Figma", category: "tool", icon: SiFigma },
+  { id: "mui", name: "MUI", category: "styling", icon: SiMui },
+  { id: "postgresql", name: "PostgreSQL", category: "tool", icon: SiPostgresql },
+  { id: "docker", name: "Docker", category: "tool", icon: SiDocker },
+  { id: "vite", name: "Vite", category: "tool", icon: SiVite },
+  { id: "jupyter", name: "Jupyter", category: "tool", icon: SiJupyter },
   { id: "vercel", name: "Vercel", category: "tool", icon: SiVercel },
 ] as const satisfies readonly Stack[];
 
