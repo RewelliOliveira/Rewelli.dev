@@ -1,4 +1,5 @@
-import { ExternalLink, GitBranch, Lock } from "lucide-react";
+import { ExternalLink, Lock } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 import { getLocale, getTranslations } from "next-intl/server";
 import { projects, type Project } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
@@ -60,7 +61,7 @@ async function ProjectPanel({
   const newTab = <span className="sr-only">{tCommon("newTab")}</span>;
 
   return (
-    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-colors duration-300 hover:border-foreground/20">
+    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-colors duration-300 hover:border-highlight/40">
       <div className="grid gap-6 p-4 md:grid-cols-[1fr_1.1fr] md:gap-8 md:p-5">
         <div className="min-w-0">
           <h3 className="font-heading text-xl font-medium tracking-tight">
@@ -79,7 +80,7 @@ async function ProjectPanel({
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
+                className="inline-flex max-w-full items-center gap-1.5 transition-colors hover:text-highlight-foreground"
               >
                 <span className="truncate">{getDomain(project.url)}</span>
                 <ExternalLink className="size-3.5 shrink-0" aria-hidden />
@@ -114,15 +115,16 @@ async function ProjectPanel({
                       href={repo.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
+                      className="inline-flex max-w-full items-center gap-1.5 transition-colors hover:text-highlight-foreground"
                     >
                       {repo.part ? (
                         <span className="shrink-0 rounded-sm border px-1.5 text-xs text-muted-foreground">
                           {t(`parts.${repo.part}`)}
                         </span>
                       ) : (
-                        <GitBranch
-                          className="size-3.5 shrink-0"
+                        <SiGithub
+                          className={cn("size-3.5 shrink-0", stackIconBrand)}
+                          style={stackIconVars("#181717")}
                           aria-hidden
                         />
                       )}
@@ -154,7 +156,7 @@ async function ProjectPanel({
                       <span
                         tabIndex={0}
                         aria-label={name}
-                        className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors hover:bg-muted focus-visible:bg-muted"
+                        className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors hover:border-highlight/50 hover:bg-highlight-soft focus-visible:bg-highlight-soft"
                       >
                         <Icon
                           className={cn("size-4", stackIconBrand)}

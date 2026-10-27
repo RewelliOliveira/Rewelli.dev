@@ -17,12 +17,27 @@ export function contrastRatio(a: string, b: string) {
   return (high + 0.05) / (low + 0.05);
 }
 
+function mix(hex: string, target: number, amount: number) {
+  const value = parseInt(hex.slice(1), 16);
+  const channels = [value >> 16, (value >> 8) & 255, value & 255].map((channel) =>
+    Math.round(channel + (target - channel) * amount),
+  );
+  return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
+}
+
+// Keeps the brand hue on the light theme, darkening it until it reads on the surface.
+function darkenForLight(color: string) {
+  for (let amount = 0; amount <= 1; amount += 0.05) {
+    const candidate = mix(color, 0, amount);
+    if (contrastRatio(candidate, ACTIVE_SURFACE.light) >= MIN_CONTRAST) return candidate;
+  }
+  return undefined;
+}
+
 export function stackIconVars(color: string): CSSProperties {
-  const pick = (surface: string) =>
-    contrastRatio(color, surface) >= MIN_CONTRAST ? color : undefined;
   return {
-    "--icon-light": pick(ACTIVE_SURFACE.light),
-    "--icon-dark": pick(ACTIVE_SURFACE.dark),
+    "--icon-light": darkenForLight(color),
+    "--icon-dark": contrastRatio(color, ACTIVE_SURFACE.dark) >= MIN_CONTRAST ? color : undefined,
   } as CSSProperties;
 }
 

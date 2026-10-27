@@ -5,6 +5,8 @@ import { Reveal } from "@/components/motion/reveal";
 import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
 import { profile } from "@/data/profile";
 import { localize } from "@/lib/localized";
+import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
+import { cn } from "@/lib/utils";
 import { HeroVideo } from "./hero-video";
 
 export async function Hero() {
@@ -12,8 +14,8 @@ export async function Hero() {
   const t = await getTranslations("common");
 
   const links = [
-    { label: "GitHub", href: profile.github, icon: SiGithub },
-    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
+    { label: "GitHub", href: profile.github, icon: SiGithub, color: "#181717" },
+    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin, color: "#0A66C2" },
   ];
 
   return (
@@ -34,15 +36,19 @@ export async function Hero() {
           {localize(profile.tagline, locale)}
         </Reveal>
         <ul className="mt-6 flex flex-wrap gap-2 sm:mt-7">
-          {links.map(({ label, href, icon: Icon }, index) => (
+          {links.map(({ label, href, icon: Icon, color }, index) => (
             <Reveal as="li" key={label} onMount y={12} delay={(index + 1) * 0.08}>
               <a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-foreground/20 hover:bg-muted"
+                className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
               >
-                <Icon className="size-4" aria-hidden />
+                <Icon
+                  className={cn("size-4", stackIconBrand)}
+                  style={stackIconVars(color)}
+                  aria-hidden
+                />
                 {label}
                 <span className="sr-only">{t("newTab")}</span>
               </a>
