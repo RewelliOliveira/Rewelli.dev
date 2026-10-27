@@ -1,8 +1,12 @@
 import type { IconType } from "react-icons";
+import { FaAws } from "react-icons/fa6";
+import { RiOpenaiFill } from "react-icons/ri";
 import {
+  SiClaude,
   SiDocker,
   SiExpress,
   SiFastapi,
+  SiGooglegemini,
   SiJavascript,
   SiJupyter,
   SiLangchain,
@@ -20,7 +24,7 @@ import {
   SiVercel,
 } from "react-icons/si";
 
-export type StackCategory = "language" | "framework" | "library" | "styling" | "tool";
+export type StackCategory = "language" | "framework" | "library" | "styling" | "tool" | "ai";
 
 export type Stack = {
   id: string;
@@ -49,6 +53,10 @@ export const stacks = [
   { id: "docker", name: "Docker", category: "tool", icon: SiDocker, color: "#2496ED" },
   { id: "jupyter", name: "Jupyter", category: "tool", icon: SiJupyter, color: "#F37626" },
   { id: "vercel", name: "Vercel", category: "tool", icon: SiVercel, color: "#000000" },
+  { id: "aws", name: "AWS", category: "tool", icon: FaAws, color: "#FF9900" },
+  { id: "claude", name: "Claude", category: "ai", icon: SiClaude, color: "#D97757" },
+  { id: "chatgpt", name: "ChatGPT", category: "ai", icon: RiOpenaiFill, color: "#10A37F" },
+  { id: "gemini", name: "Gemini", category: "ai", icon: SiGooglegemini, color: "#8E75B2" },
 ] as const satisfies readonly Stack[];
 
 export type StackId = (typeof stacks)[number]["id"];

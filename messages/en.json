@@ -26,8 +26,7 @@
     "builtWith": "Built with",
     "categories": {
       "apps": "Applications",
-      "landing": "Landing pages",
-      "ai": "Machine Learning & AI"
+      "landing": "Landing pages"
     },
     "parts": {
       "frontend": "front",
@@ -40,8 +39,13 @@
     "list": "Stack list"
   },
   "experience": {
-    "title": "Experience",
-    "present": "present"
+    "title": "Experience & certificates",
+    "present": "present",
+    "experienceTab": "Experience",
+    "certificatesTab": "Certificates",
+    "tabsLabel": "Experience and certificates",
+    "verify": "Verify",
+    "certificatePreview": "{name} certificate"
   },
   "footer": {
     "cta": "Want to talk? Send me an email.",

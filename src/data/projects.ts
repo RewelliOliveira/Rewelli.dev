@@ -1,7 +1,7 @@
 import type { Localized } from "@/lib/localized";
 import type { StackId } from "./stacks";
 
-export const projectCategories = ["apps", "landing", "ai"] as const;
+export const projectCategories = ["apps", "landing"] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
@@ -54,22 +54,6 @@ export const projects: Project[] = [
     stacks: ["react", "typescript", "tailwind", "vercel"],
   },
   {
-    slug: "aircrafts",
-    name: "Aircrafts",
-    category: "apps",
-    description: {
-      pt: "Gestão de companhias aéreas e frotas: API REST com busca por código IATA e uma interface que recebe os eventos em tempo real via Server-Sent Events.",
-      en: "Airline and fleet management: a REST API with IATA code lookup and an interface that receives events in real time over Server-Sent Events.",
-      es: "Gestión de aerolíneas y flotas: una API REST con búsqueda por código IATA y una interfaz que recibe los eventos en tiempo real vía Server-Sent Events.",
-    },
-    featured: false,
-    repos: [
-      { url: "https://github.com/RewelliOliveira/aircraft-user-interface", part: "frontend" },
-      { url: "https://github.com/RewelliOliveira/aircrafts-api", part: "backend" },
-    ],
-    stacks: ["python", "fastapi", "postgresql", "docker", "react", "typescript", "tailwind"],
-  },
-  {
     slug: "abyss",
     name: "Abyss",
     category: "landing",
@@ -98,18 +82,5 @@ export const projects: Project[] = [
     url: "https://hollowcrest-rho.vercel.app",
     repos: [{ url: "https://github.com/RewelliOliveira/Hollowcrest" }],
     stacks: ["react", "typescript", "tailwind", "python", "vercel"],
-  },
-  {
-    slug: "data-mine",
-    name: "Data Mine",
-    category: "ai",
-    description: {
-      pt: "Notebooks de Mineração de Dados: análise exploratória, pré-processamento, KNN e árvore de decisão, em ambiente Docker.",
-      en: "Data mining notebooks: exploratory analysis, preprocessing, KNN and decision trees, in a Docker environment.",
-      es: "Notebooks de minería de datos: análisis exploratorio, preprocesamiento, KNN y árboles de decisión, en un entorno Docker.",
-    },
-    featured: false,
-    repos: [{ url: "https://github.com/RewelliOliveira/data-mine" }],
-    stacks: ["python", "jupyter", "docker"],
   },
 ];

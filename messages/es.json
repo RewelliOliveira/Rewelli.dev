@@ -26,8 +26,7 @@
     "builtWith": "Hecho con",
     "categories": {
       "apps": "Aplicaciones",
-      "landing": "Landing pages",
-      "ai": "Machine Learning e IA"
+      "landing": "Landing pages"
     },
     "parts": {
       "frontend": "front",
@@ -40,8 +39,13 @@
     "list": "Lista de stacks"
   },
   "experience": {
-    "title": "Experiencia",
-    "present": "actual"
+    "title": "Experiencia y certificados",
+    "present": "actual",
+    "experienceTab": "Experiencia",
+    "certificatesTab": "Certificados",
+    "tabsLabel": "Experiencia y certificados",
+    "verify": "Verificar",
+    "certificatePreview": "Certificado {name}"
   },
   "footer": {
     "cta": "¿Hablamos? Escríbeme un correo.",

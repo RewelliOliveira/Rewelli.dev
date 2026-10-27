@@ -23,9 +23,6 @@ export async function Hero() {
           <RandomLetterSwap
             label={profile.name}
             swapLabel={localize(profile.role, locale)}
-            suffix={
-              <span className="ml-[0.06em] inline-block h-[0.72em] w-[0.34em] animate-caret bg-primary" />
-            }
           />
         </h1>
         <Reveal

@@ -16,9 +16,11 @@ export type ProjectTab = {
 export function ProjectTabs({
   tabs,
   label,
+  layoutId = "project-tab-active",
 }: {
   tabs: ProjectTab[];
   label: string;
+  layoutId?: string;
 }) {
   const [value, setValue] = useState(tabs[0]?.id);
 
@@ -38,7 +40,7 @@ export function ProjectTabs({
             >
               {isActive && (
                 <motion.span
-                  layoutId="project-tab-active"
+                  layoutId={layoutId}
                   aria-hidden
                   className="absolute inset-0 rounded-md bg-muted"
                   transition={{ duration: 0.35, ease: EASE_OUT }}
