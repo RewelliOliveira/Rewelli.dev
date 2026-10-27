@@ -39,7 +39,6 @@ export async function Hero() {
           ))}
         </ul>
       </div>
-      {/* Espaço reservado para um GIF/animação. */}
       <div aria-hidden className="aspect-square w-full max-w-[320px] rounded-2xl bg-muted" />
     </section>
   );

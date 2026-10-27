@@ -5,7 +5,6 @@ import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
 export default getRequestConfig(async ({ locale }) => {
-  // `locale` só vem preenchido quando é passado explicitamente (ex.: getTranslations({ locale })).
   const requested = locale ?? (await rootLocale());
   if (!hasLocale(routing.locales, requested)) notFound();
 

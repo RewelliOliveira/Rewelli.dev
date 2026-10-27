@@ -20,7 +20,6 @@ export function CopyEmailButton({ email }: { email: string }) {
       await navigator.clipboard.writeText(email);
       setCopied(true);
     } catch {
-      // Sem permissão de área de transferência: o e-mail continua visível para copiar à mão.
     }
   }
 

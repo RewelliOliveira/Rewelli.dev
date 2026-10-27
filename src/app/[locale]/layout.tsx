@@ -31,7 +31,6 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : "http://localhost:3000";
 
-/** "/" para o idioma padrão, "/en" e "/es" para os outros. */
 function localePath(locale: string) {
   return locale === routing.defaultLocale ? "/" : `/${locale}`;
 }

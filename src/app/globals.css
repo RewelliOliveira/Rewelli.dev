@@ -4,7 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Paleta: edite aqui as cores do tema claro (:root) e escuro (.dark). */
 :root {
   --background: #f6f6f3;
   --foreground: #17181a;
