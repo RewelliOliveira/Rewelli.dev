@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "description": "Desenvolvedor front-end. Portfólio com projetos, stacks e experiência.",
+    "ogLocale": "pt_BR"
+  },
+  "common": {
+    "newTab": "(abre em nova aba)"
+  },
+  "header": {
+    "home": "Início",
+    "language": "Idioma",
+    "toggleTheme": "Alternar tema"
+  },
+  "projects": {
+    "title": "Projetos",
+    "count": "{count, plural, one {# projeto} other {# projetos}}",
+    "label": "Projeto",
+    "featured": "Destaque",
+    "openSite": "Abrir site",
+    "preview": "Prévia de {name}",
+    "site": "Site",
+    "status": "Status",
+    "online": "Online",
+    "codeOnly": "Só código",
+    "year": "Ano",
+    "repo": "Repositório",
+    "builtWith": "Feito com"
+  },
+  "stacks": {
+    "title": "Stacks",
+    "list": "Lista de stacks",
+    "usage": "em {count} de {total} projetos",
+    "categories": {
+      "language": "linguagem",
+      "framework": "framework",
+      "styling": "estilo",
+      "tool": "ferramenta"
+    }
+  },
+  "experience": {
+    "title": "Experiência"
+  },
+  "footer": {
+    "cta": "Quer conversar? Me manda um e-mail.",
+    "copy": "Copiar",
+    "copied": "Copiado"
+  }
+}

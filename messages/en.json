@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "description": "Front-end developer. Portfolio with projects, stacks and experience.",
+    "ogLocale": "en_US"
+  },
+  "common": {
+    "newTab": "(opens in a new tab)"
+  },
+  "header": {
+    "home": "Home",
+    "language": "Language",
+    "toggleTheme": "Toggle theme"
+  },
+  "projects": {
+    "title": "Projects",
+    "count": "{count, plural, one {# project} other {# projects}}",
+    "label": "Project",
+    "featured": "Featured",
+    "openSite": "Open site",
+    "preview": "Preview of {name}",
+    "site": "Site",
+    "status": "Status",
+    "online": "Online",
+    "codeOnly": "Code only",
+    "year": "Year",
+    "repo": "Repository",
+    "builtWith": "Built with"
+  },
+  "stacks": {
+    "title": "Stacks",
+    "list": "Stack list",
+    "usage": "in {count} of {total} projects",
+    "categories": {
+      "language": "language",
+      "framework": "framework",
+      "styling": "styling",
+      "tool": "tool"
+    }
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "footer": {
+    "cta": "Want to talk? Send me an email.",
+    "copy": "Copy",
+    "copied": "Copied"
+  }
+}

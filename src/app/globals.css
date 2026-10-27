@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Paleta: edite aqui as cores do tema claro (:root) e escuro (.dark). */
+:root {
+  --background: #f6f6f3;
+  --foreground: #17181a;
+  --card: #ffffff;
+  --card-foreground: #17181a;
+  --popover: #17181a;
+  --popover-foreground: #f6f6f3;
+  --primary: #2f4fd8;
+  --primary-foreground: #ffffff;
+  --secondary: #ebebe6;
+  --secondary-foreground: #17181a;
+  --muted: #ebebe6;
+  --muted-foreground: #6b6e72;
+  --accent: #ebebe6;
+  --accent-foreground: #17181a;
+  --destructive: #c4372f;
+  --border: #dcdcd6;
+  --input: #dcdcd6;
+  --ring: #2f4fd8;
+  --online: #1f9d6b;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #111214;
+  --foreground: #ececea;
+  --card: #17181b;
+  --card-foreground: #ececea;
+  --popover: #ececea;
+  --popover-foreground: #111214;
+  --primary: #8ea4ff;
+  --primary-foreground: #111214;
+  --secondary: #212327;
+  --secondary-foreground: #ececea;
+  --muted: #212327;
+  --muted-foreground: #9a9da1;
+  --accent: #212327;
+  --accent-foreground: #ececea;
+  --destructive: #f07167;
+  --border: #2c2e33;
+  --input: #2c2e33;
+  --ring: #8ea4ff;
+  --online: #4fd1a1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-online: var(--online);
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
