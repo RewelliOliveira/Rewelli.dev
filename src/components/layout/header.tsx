@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Logo } from "@/components/ui/logo";
 import { profile } from "@/data/profile";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./language-switcher";
@@ -12,9 +13,8 @@ export async function Header() {
       <Link
         href="/"
         aria-label={`${profile.name} — ${t("home")}`}
-        className="font-heading text-base font-medium tracking-tight"
       >
-        {profile.name}
+        <Logo />
       </Link>
       <div className="flex items-center gap-2">
         <LanguageSwitcher />
