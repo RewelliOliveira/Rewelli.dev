@@ -2,7 +2,7 @@ import type { Localized } from "@/lib/localized";
 
 export type Profile = {
   name: string;
-  role: string;
+  role: Localized;
   tagline: Localized;
   email: string;
   github: string;
@@ -11,7 +11,11 @@ export type Profile = {
 
 export const profile: Profile = {
   name: "Rewelli Oliveira",
-  role: "Full Stack Developer",
+  role: {
+    pt: "Desenvolvedor Full Stack",
+    en: "Full Stack Developer",
+    es: "Desarrollador Full Stack",
+  },
   tagline: {
     pt: "Crio aplicações web de ponta a ponta, do banco de dados à interface, com React, TypeScript e Node.js para varejo, finanças e saúde.",
     en: "I build web applications end to end, from the database to the interface, with React, TypeScript and Node.js for retail, finance and healthcare.",

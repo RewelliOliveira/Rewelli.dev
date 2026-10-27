@@ -1,10 +1,9 @@
 "use client"
 
-// Random Letter Swap — Originkit
-
 import * as React from "react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion, useAnimate, type AnimationOptions } from "motion/react"
+import { usePageVisible, usePrefersReducedMotion } from "@/lib/hooks"
 
 type Props = {
   label: string
@@ -138,10 +137,16 @@ export function RandomLetterSwap({
     return () => observer.disconnect()
   }, [])
 
+  const reduceMotion = usePrefersReducedMotion()
+  const pageVisible = usePageVisible()
+  const canSwap = !reduceMotion && pageVisible
+  const showSwap = swapped && !reduceMotion
+
   useEffect(() => {
+    if (!canSwap) return
     const id = setInterval(() => setSwapped((s) => !s), interval)
     return () => clearInterval(id)
-  }, [interval])
+  }, [interval, canSwap])
 
   const firstRun = useRef(true)
 
@@ -161,13 +166,13 @@ export function RandomLetterSwap({
       })
     }
 
-    run(letterIndexes(label), (i) => `.letter-${i}`, swapped ? out : 0)
+    run(letterIndexes(label), (i) => `.letter-${i}`, showSwap ? out : 0)
     run(
       letterIndexes(swapLabel),
       (i) => `.letter-secondary-${i}`,
-      swapped ? 0 : incoming
+      showSwap ? 0 : incoming
     )
-  }, [swapped, label, swapLabel, out, incoming, staggerDuration, transition, animate])
+  }, [showSwap, label, swapLabel, out, incoming, staggerDuration, transition, animate])
 
   return (
     <motion.span
@@ -177,7 +182,7 @@ export function RandomLetterSwap({
       initial={false}
       animate={
         heights
-          ? { height: swapped ? heights.secondary : heights.primary }
+          ? { height: showSwap ? heights.secondary : heights.primary }
           : undefined
       }
       transition={{ type: "spring", duration: 0.6, bounce: 0 }}

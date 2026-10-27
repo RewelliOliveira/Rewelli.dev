@@ -1,10 +1,11 @@
-import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
+import { Reveal } from "@/components/motion/reveal";
 import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
 import { profile } from "@/data/profile";
 import { localize } from "@/lib/localized";
+import { HeroVideo } from "./hero-video";
 
 export async function Hero() {
   const locale = await getLocale();
@@ -19,14 +20,22 @@ export async function Hero() {
     <section className="grid items-center gap-10 pt-10 md:grid-cols-[1fr_320px] md:gap-16 md:pt-16">
       <div>
         <h1 className="font-heading text-5xl font-bold tracking-tight text-balance sm:text-6xl">
-          <RandomLetterSwap label={profile.name} swapLabel={profile.role} />
+          <RandomLetterSwap
+            label={profile.name}
+            swapLabel={localize(profile.role, locale)}
+          />
         </h1>
-        <p className="mt-5 max-w-md text-lg text-pretty text-muted-foreground">
+        <Reveal
+          as="p"
+          onMount
+          y={12}
+          className="mt-5 max-w-md text-lg text-pretty text-muted-foreground"
+        >
           {localize(profile.tagline, locale)}
-        </p>
+        </Reveal>
         <ul className="mt-7 flex flex-wrap gap-2">
-          {links.map(({ label, href, icon: Icon }) => (
-            <li key={label}>
+          {links.map(({ label, href, icon: Icon }, index) => (
+            <Reveal as="li" key={label} onMount y={12} delay={(index + 1) * 0.08}>
               <a
                 href={href}
                 target="_blank"
@@ -37,21 +46,18 @@ export async function Hero() {
                 {label}
                 <span className="sr-only">{t("newTab")}</span>
               </a>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </div>
-      <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl bg-muted">
-        <Image
-          src="/cat.webp"
-          alt=""
-          fill
-          priority
-          unoptimized
-          sizes="320px"
-          className="object-cover"
-        />
-      </div>
+      <Reveal
+        onMount
+        y={0}
+        scale={0.96}
+        className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl bg-muted"
+      >
+        <HeroVideo />
+      </Reveal>
     </section>
   );
 }
