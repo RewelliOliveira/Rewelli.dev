@@ -4,6 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
+import { useThemeToggle } from "@/components/background/skiper26";
 import { EASE_OUT } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -11,7 +12,8 @@ import { useMounted } from "@/lib/hooks";
 
 export function ThemeToggle() {
   const t = useTranslations("header");
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const { toggleTheme } = useThemeToggle({ variant: "circle", start: "top-right" });
   const mounted = useMounted();
   const label = t("toggleTheme");
   const isDark = mounted && resolvedTheme === "dark";
@@ -24,7 +26,7 @@ export function ThemeToggle() {
           variant="ghost"
           size="icon"
           aria-label={label}
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          onClick={toggleTheme}
         >
           {mounted ? (
             <AnimatePresence mode="wait" initial={false}>
