@@ -6,7 +6,7 @@ export async function Footer() {
   const t = await getTranslations("footer");
 
   return (
-    <footer className="border-t py-16">
+    <footer className="border-t py-10 sm:py-16">
       <p className="font-heading text-2xl font-medium tracking-tight sm:text-3xl">{t("cta")}</p>
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <a

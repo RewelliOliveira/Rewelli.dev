@@ -16,8 +16,8 @@ export function StackShowcase() {
   const ActiveIcon = active.icon;
 
   return (
-    <div className="mt-8 grid gap-4 rounded-xl border bg-card p-3 md:grid-cols-2 md:gap-5 md:p-4">
-      <ul aria-label={t("list")} className="grid grid-cols-5 gap-2 self-start">
+    <div className="mt-6 grid gap-3 rounded-xl border bg-card p-2.5 sm:mt-8 sm:gap-4 sm:p-3 md:grid-cols-2 md:gap-5 md:p-4">
+      <ul aria-label={t("list")} className="grid grid-cols-6 gap-1.5 self-start sm:grid-cols-5 sm:gap-2">
         {stacks.map(({ id, name, icon: Icon, color }) => {
           const isActive = id === activeId;
           return (
@@ -43,7 +43,7 @@ export function StackShowcase() {
                 )}
                 <Icon
                   className={cn(
-                    "relative size-5 sm:size-6",
+                    "relative size-4 sm:size-6",
                     stackIconBrand,
                   )}
                   style={stackIconVars(color)}
@@ -57,7 +57,7 @@ export function StackShowcase() {
 
       <div
         aria-live="polite"
-        className="order-first flex min-h-48 items-center rounded-md border bg-muted p-6 md:order-0"
+        className="order-first flex min-h-24 items-center rounded-md border bg-muted p-4 sm:min-h-48 sm:p-6 md:order-0"
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
@@ -66,14 +66,14 @@ export function StackShowcase() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="flex items-center gap-5"
+            className="flex items-center gap-4 sm:gap-5"
           >
             <ActiveIcon
-              className={cn("size-16 shrink-0 sm:size-20", stackIconBrand)}
+              className={cn("size-10 shrink-0 sm:size-20", stackIconBrand)}
               style={stackIconVars(active.color)}
               aria-hidden
             />
-            <p className="font-heading text-2xl font-medium tracking-tight sm:text-3xl">
+            <p className="font-heading text-xl font-medium tracking-tight sm:text-3xl">
               {active.name}
             </p>
           </motion.div>

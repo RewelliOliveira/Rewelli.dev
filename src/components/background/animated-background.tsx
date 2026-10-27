@@ -6,7 +6,7 @@ import { usePageVisible, usePrefersReducedMotion } from "@/lib/hooks";
 
 export const BACKGROUND_SETTINGS = {
   count: 116,
-  mobileCount: 50,
+  mobileCount: 30,
   mobileBreakpoint: 640,
   speedMin: 0.4,
   speedMax: 0.7,

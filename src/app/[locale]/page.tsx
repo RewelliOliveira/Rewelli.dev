@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="mx-auto w-full max-w-[960px] px-4 sm:px-6">
       <Header />
-      <main className="space-y-24 pb-24 md:space-y-32 md:pb-32">
+      <main className="space-y-16 pb-16 sm:space-y-24 sm:pb-24 md:space-y-32 md:pb-32">
         <Hero />
         <Projects />
         <Stacks />

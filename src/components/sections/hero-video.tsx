@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePrefersReducedMotion } from "@/lib/hooks";
+import { useMediaQuery, usePrefersReducedMotion } from "@/lib/hooks";
 
 const POSTER = "/cat-poster.webp";
 
 export function HeroVideo() {
   const reduceMotion = usePrefersReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -14,7 +15,9 @@ export function HeroVideo() {
     if (!video) return;
     if (reduceMotion) video.pause();
     else video.play().catch(() => {});
-  }, [reduceMotion]);
+  }, [reduceMotion, isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <>

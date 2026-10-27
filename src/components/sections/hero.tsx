@@ -17,9 +17,9 @@ export async function Hero() {
   ];
 
   return (
-    <section className="grid items-center gap-10 pt-10 md:grid-cols-[1fr_320px] md:gap-16 md:pt-16">
+    <section className="grid items-center gap-10 pt-6 md:grid-cols-[1fr_320px] md:gap-16 md:pt-16">
       <div>
-        <h1 className="font-heading text-5xl font-bold tracking-tight text-balance sm:text-6xl">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl">
           <RandomLetterSwap
             label={profile.name}
             swapLabel={localize(profile.role, locale)}
@@ -29,11 +29,11 @@ export async function Hero() {
           as="p"
           onMount
           y={12}
-          className="mt-5 max-w-md text-lg text-pretty text-muted-foreground"
+          className="mt-4 max-w-md text-base text-pretty text-muted-foreground sm:mt-5 sm:text-lg"
         >
           {localize(profile.tagline, locale)}
         </Reveal>
-        <ul className="mt-7 flex flex-wrap gap-2">
+        <ul className="mt-6 flex flex-wrap gap-2 sm:mt-7">
           {links.map(({ label, href, icon: Icon }, index) => (
             <Reveal as="li" key={label} onMount y={12} delay={(index + 1) * 0.08}>
               <a
@@ -54,7 +54,7 @@ export async function Hero() {
         onMount
         y={0}
         scale={0.96}
-        className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-xl border bg-muted"
+        className="relative hidden aspect-square w-full max-w-[320px] overflow-hidden rounded-xl border bg-muted md:block"
       >
         <HeroVideo />
       </Reveal>
