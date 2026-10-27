@@ -12,6 +12,7 @@ import {
   renderStackIcon,
 } from "@/lib/projects";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 import {
   Tooltip,
   TooltipContent,
@@ -26,17 +27,17 @@ export async function Projects() {
 
   return (
     <section aria-labelledby="projects-title">
-      <div className="flex items-baseline justify-between gap-4">
+      <Reveal className="flex items-baseline justify-between gap-4">
         <h2
           id="projects-title"
           className="font-heading text-3xl font-medium tracking-tight"
         >
           {t("title")}
         </h2>
-        <p className="font-mono text-sm text-muted-foreground">
+        <p className="rounded-full bg-highlight px-2 py-0.5 font-mono text-sm text-foreground dark:text-background">
           {t("count", { count: projects.length })}
         </p>
-      </div>
+      </Reveal>
       <ProjectTabs
         label={t("categoriesLabel")}
         tabs={sections.map(({ category, items }) => ({
@@ -46,13 +47,13 @@ export async function Projects() {
           content: (
             <ol className="space-y-6">
               {items.map(({ project, index }) => (
-                <li key={project.slug}>
+                <Reveal as="li" key={project.slug} delay={index * 0.06}>
                   <ProjectPanel
                     project={project}
                     index={index}
                     locale={locale}
                   />
-                </li>
+                </Reveal>
               ))}
             </ol>
           ),
@@ -95,7 +96,7 @@ async function ProjectPanel({
   );
 
   return (
-    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground">
+    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-[translate,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-primary">
       <div className="flex items-center gap-3 border-b px-4 py-2.5 font-mono text-xs text-muted-foreground">
         <span className="text-foreground">
           {String(index + 1).padStart(2, "0")}
