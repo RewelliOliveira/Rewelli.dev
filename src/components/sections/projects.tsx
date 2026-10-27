@@ -48,11 +48,7 @@ export async function Projects() {
             <ol className="space-y-6">
               {items.map(({ project, index }) => (
                 <Reveal as="li" key={project.slug} delay={index * 0.06}>
-                  <ProjectPanel
-                    project={project}
-                    index={index}
-                    locale={locale}
-                  />
+                  <ProjectPanel project={project} locale={locale} />
                 </Reveal>
               ))}
             </ol>
@@ -65,11 +61,9 @@ export async function Projects() {
 
 async function ProjectPanel({
   project,
-  index,
   locale,
 }: {
   project: Project;
-  index: number;
   locale: Locale;
 }) {
   const t = await getTranslations("projects");
@@ -82,7 +76,7 @@ async function ProjectPanel({
       alt={t("preview", { name: project.name })}
       fill
       sizes="(min-width: 768px) 460px, 100vw"
-      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+      className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
     />
   ) : (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-muted-foreground">
@@ -97,25 +91,13 @@ async function ProjectPanel({
 
   return (
     <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-[translate,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-primary">
-      <div className="flex items-center gap-3 border-b px-4 py-2.5 font-mono text-xs text-muted-foreground">
-        <span className="text-foreground">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <span>{t("label")}</span>
-        {project.featured && (
-          <span className="ml-auto rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-primary">
-            {t("featured")}
-          </span>
-        )}
-      </div>
-
       <div className="grid gap-6 p-4 md:grid-cols-[1.15fr_1fr] md:gap-8 md:p-5">
         {project.url ? (
           <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block aspect-16/10 overflow-hidden rounded-lg border bg-muted"
+            className="group relative block aspect-16/10 overflow-hidden rounded-lg border bg-muted md:aspect-auto md:min-h-72"
           >
             {preview}
             <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm backdrop-blur">
@@ -125,15 +107,22 @@ async function ProjectPanel({
             {newTab}
           </a>
         ) : (
-          <div className="relative aspect-16/10 overflow-hidden rounded-lg border bg-muted">
+          <div className="relative aspect-16/10 overflow-hidden rounded-lg border bg-muted md:aspect-auto md:min-h-72">
             {preview}
           </div>
         )}
 
         <div className="min-w-0">
-          <h3 className="font-heading text-2xl font-medium tracking-tight">
-            {project.name}
-          </h3>
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="font-heading text-2xl font-medium tracking-tight">
+              {project.name}
+            </h3>
+            {project.featured && (
+              <span className="mt-1 shrink-0 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-xs text-primary">
+                {t("featured")}
+              </span>
+            )}
+          </div>
           <p className="mt-1.5 text-muted-foreground">
             {localize(project.description, locale)}
           </p>
@@ -168,9 +157,6 @@ async function ProjectPanel({
               />
               {project.url ? t("online") : t("codeOnly")}
             </dd>
-
-            <dt className="text-muted-foreground">{t("year")}</dt>
-            <dd className="font-mono">{project.year}</dd>
 
             <dt className="text-muted-foreground">
               {t("repo", { count: project.repos.length })}
@@ -217,16 +203,20 @@ async function ProjectPanel({
             <dt className="text-muted-foreground">{t("builtWith")}</dt>
             <dd>
               <ul className="flex flex-wrap gap-1.5">
-                {getStacks(project.stacks).map(({ id, name, icon: Icon }) => (
+                {getStacks(project.stacks).map(({ id, name, icon: Icon, color }) => (
                   <li key={id}>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <span
                           tabIndex={0}
                           aria-label={name}
-                          className="flex size-8 items-center justify-center rounded-md border text-muted-foreground transition-colors outline-none hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                          className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
                         >
-                          <Icon className="size-4" aria-hidden />
+                          <Icon
+                            className="size-4"
+                            style={color ? { color } : undefined}
+                            aria-hidden
+                          />
                         </span>
                       </TooltipTrigger>
                       <TooltipContent sideOffset={4}>{name}</TooltipContent>

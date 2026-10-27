@@ -14,7 +14,6 @@
   "projects": {
     "title": "Projetos",
     "count": "{count, plural, one {# projeto} other {# projetos}}",
-    "label": "Projeto",
     "featured": "Destaque",
     "openSite": "Abrir site",
     "preview": "Prévia de {name}",
@@ -22,7 +21,6 @@
     "status": "Status",
     "online": "Online",
     "codeOnly": "Só código",
-    "year": "Ano",
     "repo": "{count, plural, =0 {Repositório} one {Repositório} other {Repositórios}}",
     "private": "Privado",
     "builtWith": "Feito com",
@@ -39,15 +37,7 @@
   },
   "stacks": {
     "title": "Stacks",
-    "list": "Lista de stacks",
-    "usage": "em {count} de {total} projetos",
-    "categories": {
-      "language": "linguagem",
-      "framework": "framework",
-      "library": "biblioteca",
-      "styling": "estilo",
-      "tool": "ferramenta"
-    }
+    "list": "Lista de stacks"
   },
   "experience": {
     "title": "Experiência",

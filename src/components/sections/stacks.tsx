@@ -1,7 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { projects } from "@/data/projects";
 import { Reveal } from "@/components/motion/reveal";
-import { getStackUsage } from "@/lib/projects";
 import { StackShowcase } from "./stack-showcase";
 
 export async function Stacks() {
@@ -14,7 +12,7 @@ export async function Stacks() {
           {t("title")}
         </h2>
       </Reveal>
-      <StackShowcase usage={getStackUsage()} totalProjects={projects.length} />
+      <StackShowcase />
     </section>
   );
 }

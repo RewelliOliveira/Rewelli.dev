@@ -1,18 +1,23 @@
 import type { IconType } from "react-icons";
 import {
   SiDocker,
+  SiExpress,
   SiFastapi,
-  SiGreensock,
+  SiJavascript,
   SiJupyter,
   SiLangchain,
-  SiMui,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPandas,
   SiPostgresql,
   SiPython,
   SiReact,
+  SiScikitlearn,
+  SiSupabase,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
-  SiVite,
 } from "react-icons/si";
 
 export type StackCategory = "language" | "framework" | "library" | "styling" | "tool";
@@ -22,22 +27,29 @@ export type Stack = {
   name: string;
   category: StackCategory;
   icon: IconType;
+  // Cor oficial da marca; null quando ela é preta/escura e sumiria no tema escuro.
+  color: string | null;
 };
 
 export const stacks = [
-  { id: "typescript", name: "TypeScript", category: "language", icon: SiTypescript },
-  { id: "python", name: "Python", category: "language", icon: SiPython },
-  { id: "react", name: "React", category: "framework", icon: SiReact },
-  { id: "fastapi", name: "FastAPI", category: "framework", icon: SiFastapi },
-  { id: "langchain", name: "LangChain", category: "library", icon: SiLangchain },
-  { id: "gsap", name: "GSAP", category: "library", icon: SiGreensock },
-  { id: "tailwind", name: "Tailwind", category: "styling", icon: SiTailwindcss },
-  { id: "mui", name: "MUI", category: "styling", icon: SiMui },
-  { id: "postgresql", name: "PostgreSQL", category: "tool", icon: SiPostgresql },
-  { id: "docker", name: "Docker", category: "tool", icon: SiDocker },
-  { id: "vite", name: "Vite", category: "tool", icon: SiVite },
-  { id: "jupyter", name: "Jupyter", category: "tool", icon: SiJupyter },
-  { id: "vercel", name: "Vercel", category: "tool", icon: SiVercel },
+  { id: "javascript", name: "JavaScript", category: "language", icon: SiJavascript, color: "#F7DF1E" },
+  { id: "typescript", name: "TypeScript", category: "language", icon: SiTypescript, color: "#3178C6" },
+  { id: "python", name: "Python", category: "language", icon: SiPython, color: "#3776AB" },
+  { id: "react", name: "React", category: "framework", icon: SiReact, color: "#61DAFB" },
+  { id: "nextjs", name: "Next.js", category: "framework", icon: SiNextdotjs, color: null },
+  { id: "nodejs", name: "Node.js", category: "tool", icon: SiNodedotjs, color: "#5FA04E" },
+  { id: "express", name: "Express", category: "framework", icon: SiExpress, color: null },
+  { id: "fastapi", name: "FastAPI", category: "framework", icon: SiFastapi, color: "#009688" },
+  { id: "pandas", name: "pandas", category: "library", icon: SiPandas, color: null },
+  { id: "scikitlearn", name: "scikit-learn", category: "library", icon: SiScikitlearn, color: "#F7931E" },
+  { id: "langchain", name: "LangChain", category: "library", icon: SiLangchain, color: null },
+  { id: "tailwind", name: "Tailwind", category: "styling", icon: SiTailwindcss, color: "#06B6D4" },
+  { id: "postgresql", name: "PostgreSQL", category: "tool", icon: SiPostgresql, color: "#4169E1" },
+  { id: "mysql", name: "MySQL", category: "tool", icon: SiMysql, color: "#4479A1" },
+  { id: "supabase", name: "Supabase", category: "tool", icon: SiSupabase, color: "#3FCF8E" },
+  { id: "docker", name: "Docker", category: "tool", icon: SiDocker, color: "#2496ED" },
+  { id: "jupyter", name: "Jupyter", category: "tool", icon: SiJupyter, color: "#F37626" },
+  { id: "vercel", name: "Vercel", category: "tool", icon: SiVercel, color: null },
 ] as const satisfies readonly Stack[];
 
 export type StackId = (typeof stacks)[number]["id"];

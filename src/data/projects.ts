@@ -15,7 +15,6 @@ export type Project = {
   name: string;
   category: ProjectCategory;
   description: Localized;
-  year: number;
   featured: boolean;
   image?: string;
   url?: string;
@@ -25,6 +24,21 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "renvest",
+    name: "Renvest",
+    category: "apps",
+    description: {
+      pt: "Plataforma de educação financeira para investidores iniciantes, com trilhas de aprendizado, simulações e dados oficiais da B3 e da CVM. Meu TCC na UFC.",
+      en: "A financial education platform for beginner investors, with learning paths, simulations and official data from B3 and CVM. My undergraduate thesis at UFC.",
+      es: "Una plataforma de educación financiera para inversores principiantes, con rutas de aprendizaje, simulaciones y datos oficiales de B3 y CVM. Mi trabajo de grado en la UFC.",
+    },
+    featured: true,
+    image: "/projects/renvest.png",
+    url: "https://renvest-eight.vercel.app",
+    repos: [],
+    stacks: ["react", "typescript", "tailwind", "python", "fastapi", "vercel"],
+  },
+  {
     slug: "your-menu",
     name: "Your Menu",
     category: "apps",
@@ -33,12 +47,11 @@ export const projects: Project[] = [
       en: "An ordering platform for restaurants: digital menu, Pix checkout and a real-time order dashboard.",
       es: "Una plataforma de pedidos para restaurantes: menú digital, checkout con Pix y panel de pedidos en tiempo real.",
     },
-    year: 2025,
     featured: true,
     image: "/projects/your-menu.png",
     url: "https://your-menu-zeta.vercel.app",
     repos: [{ url: "https://github.com/RewelliOliveira/your-menu" }],
-    stacks: ["react", "typescript", "tailwind", "vite", "vercel"],
+    stacks: ["react", "typescript", "tailwind", "vercel"],
   },
   {
     slug: "aircrafts",
@@ -49,13 +62,12 @@ export const projects: Project[] = [
       en: "Airline and fleet management: a REST API with IATA code lookup and an interface that receives events in real time over Server-Sent Events.",
       es: "Gestión de aerolíneas y flotas: una API REST con búsqueda por código IATA y una interfaz que recibe los eventos en tiempo real vía Server-Sent Events.",
     },
-    year: 2026,
     featured: false,
     repos: [
       { url: "https://github.com/RewelliOliveira/aircraft-user-interface", part: "frontend" },
       { url: "https://github.com/RewelliOliveira/aircrafts-api", part: "backend" },
     ],
-    stacks: ["python", "fastapi", "postgresql", "docker", "react", "typescript", "mui", "tailwind", "vite"],
+    stacks: ["python", "fastapi", "postgresql", "docker", "react", "typescript", "tailwind"],
   },
   {
     slug: "abyss",
@@ -66,12 +78,11 @@ export const projects: Project[] = [
       en: "A scroll-driven dive to the deepest known point on Earth, 10,935 m down.",
       es: "Un descenso con scroll hasta el punto más profundo de la Tierra, a 10.935 m.",
     },
-    year: 2026,
     featured: true,
     image: "/projects/abyss-hero.png",
     url: "https://abyss-one-phi.vercel.app",
     repos: [{ url: "https://github.com/RewelliOliveira/Abyss" }],
-    stacks: ["react", "typescript", "gsap", "tailwind", "vite", "vercel"],
+    stacks: ["react", "typescript", "tailwind", "vercel"],
   },
   {
     slug: "hollowcrest",
@@ -82,28 +93,11 @@ export const projects: Project[] = [
       en: "A site for a 16-bit pixel art action RPG, with six heroes animated in GSAP and sprites processed in Python.",
       es: "Sitio de un RPG de acción en pixel art 16-bit, con seis héroes animados en GSAP y sprites procesados en Python.",
     },
-    year: 2026,
     featured: false,
     image: "/projects/hollowcrest.png",
     url: "https://hollowcrest-rho.vercel.app",
     repos: [{ url: "https://github.com/RewelliOliveira/Hollowcrest" }],
-    stacks: ["react", "typescript", "gsap", "tailwind", "vite", "python", "vercel"],
-  },
-  {
-    slug: "renvest",
-    name: "Renvest",
-    category: "apps",
-    description: {
-      pt: "Plataforma de educação financeira para investidores iniciantes, com trilhas de aprendizado, simulações e dados oficiais da B3 e da CVM. Meu TCC na UFC.",
-      en: "A financial education platform for beginner investors, with learning paths, simulations and official data from B3 and CVM. My undergraduate thesis at UFC.",
-      es: "Una plataforma de educación financiera para inversores principiantes, con rutas de aprendizaje, simulaciones y datos oficiales de B3 y CVM. Mi trabajo de grado en la UFC.",
-    },
-    year: 2026,
-    featured: true,
-    image: "/projects/renvest.png",
-    url: "https://renvest-eight.vercel.app",
-    repos: [],
-    stacks: ["react", "typescript", "tailwind", "vite", "python", "fastapi", "vercel"],
+    stacks: ["react", "typescript", "tailwind", "python", "vercel"],
   },
   {
     slug: "data-mine",
@@ -114,7 +108,6 @@ export const projects: Project[] = [
       en: "Data mining notebooks: exploratory analysis, preprocessing, KNN and decision trees, in a Docker environment.",
       es: "Notebooks de minería de datos: análisis exploratorio, preprocesamiento, KNN y árboles de decisión, en un entorno Docker.",
     },
-    year: 2026,
     featured: false,
     repos: [{ url: "https://github.com/RewelliOliveira/data-mine" }],
     stacks: ["python", "jupyter", "docker"],

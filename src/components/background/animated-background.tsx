@@ -12,8 +12,8 @@ export const BACKGROUND_SETTINGS = {
   speedMax: 0.7,
   wind: 0,
   windVariation: 0.8,
-  sizeMin: 1,
-  sizeMax: 1,
+  sizeMin: 2,
+  sizeMax: 2,
   opacityMin: 0.15,
   opacityMax: 0.5,
   colorVar: "--primary",
@@ -71,7 +71,9 @@ export default function AnimatedBackground() {
       canvas!.height = Math.floor(height * dpr);
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count =
-        width < settings.mobileBreakpoint ? settings.mobileCount : settings.count;
+        width < settings.mobileBreakpoint
+          ? settings.mobileCount
+          : settings.count;
       if (flakes.length === count) return;
       flakes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
