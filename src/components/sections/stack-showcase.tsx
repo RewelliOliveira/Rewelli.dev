@@ -37,7 +37,7 @@ export function StackShowcase() {
                   <motion.span
                     layoutId="stack-active"
                     aria-hidden
-                    className="absolute -inset-px rounded-md border border-foreground/25 bg-muted"
+                    className="absolute -inset-px rounded-md border border-highlight/50 bg-highlight-soft"
                     transition={{ duration: 0.35, ease: EASE_OUT }}
                   />
                 )}

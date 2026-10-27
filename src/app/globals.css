@@ -24,6 +24,10 @@
   --input: #e4e4e7;
   --ring: #2f4fd8;
   --online: #15925f;
+  /* Cor de destaque (ciano) para hovers, botões e estados ativos */
+  --highlight: #22b8d9;
+  --highlight-soft: #e3f7fc;
+  --highlight-foreground: #0a6c85;
   --radius: 0.375rem;
 }
 
@@ -47,6 +51,9 @@
   --input: #26262a;
   --ring: #6b88ff;
   --online: #3ddc97;
+  --highlight: #5fd4ef;
+  --highlight-soft: #0e262d;
+  --highlight-foreground: #8de4f6;
 }
 
 @theme inline {
@@ -69,6 +76,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-online: var(--online);
+  --color-highlight: var(--highlight);
+  --color-highlight-soft: var(--highlight-soft);
+  --color-highlight-foreground: var(--highlight-foreground);
 
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;

@@ -30,7 +30,7 @@ export function LanguageSwitcher() {
               "rounded-sm px-1.5 py-1 uppercase tracking-wide transition-colors",
               locale === current
                 ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground",
+                : "text-muted-foreground hover:text-highlight-foreground",
             )}
           >
             {locale}

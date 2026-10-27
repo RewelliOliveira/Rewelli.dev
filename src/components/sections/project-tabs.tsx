@@ -36,13 +36,13 @@ export function ProjectTabs({
             <Tabs.Trigger
               key={tab.id}
               value={tab.id}
-              className="relative flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground focus-visible:-outline-offset-2 data-[state=active]:text-foreground"
+              className="relative flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-highlight-foreground focus-visible:-outline-offset-2 data-[state=active]:text-foreground"
             >
               {isActive && (
                 <motion.span
                   layoutId={layoutId}
                   aria-hidden
-                  className="absolute inset-0 rounded-md bg-muted"
+                  className="absolute inset-0 rounded-md bg-highlight-soft"
                   transition={{ duration: 0.35, ease: EASE_OUT }}
                 />
               )}
@@ -50,7 +50,7 @@ export function ProjectTabs({
               <span
                 className={cn(
                   "relative font-mono text-xs tabular-nums transition-colors",
-                  isActive ? "text-primary" : "text-muted-foreground",
+                  isActive ? "text-highlight-foreground" : "text-muted-foreground",
                 )}
               >
                 {tab.count}
