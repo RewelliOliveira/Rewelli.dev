@@ -11,12 +11,18 @@ export type ProjectTab = {
   content: ReactNode;
 };
 
-export function ProjectTabs({ tabs, label }: { tabs: ProjectTab[]; label: string }) {
+export function ProjectTabs({
+  tabs,
+  label,
+}: {
+  tabs: ProjectTab[];
+  label: string;
+}) {
   return (
     <Tabs.Root defaultValue={tabs[0]?.id} className="mt-8">
       <Tabs.List
         aria-label={label}
-        className="flex gap-1 overflow-x-auto rounded-xl border bg-card p-1 [scrollbar-width:none]"
+        className="flex gap-1 overflow-x-auto rounded-xl border bg-card p-1 scrollbar-none"
       >
         {tabs.map((tab) => (
           <Tabs.Trigger
@@ -25,7 +31,9 @@ export function ProjectTabs({ tabs, label }: { tabs: ProjectTab[]; label: string
             className="flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring data-[state=active]:bg-muted data-[state=active]:text-foreground"
           >
             {tab.label}
-            <span className="font-mono text-xs text-muted-foreground">{tab.count}</span>
+            <span className="font-mono text-xs text-muted-foreground">
+              {tab.count}
+            </span>
           </Tabs.Trigger>
         ))}
       </Tabs.List>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
@@ -39,7 +40,17 @@ export async function Hero() {
           ))}
         </ul>
       </div>
-      <div aria-hidden className="aspect-square w-full max-w-[320px] rounded-2xl bg-muted" />
+      <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl bg-muted">
+        <Image
+          src="/cat.webp"
+          alt=""
+          fill
+          priority
+          unoptimized
+          sizes="320px"
+          className="object-cover"
+        />
+      </div>
     </section>
   );
 }

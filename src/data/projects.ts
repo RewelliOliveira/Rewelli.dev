@@ -92,18 +92,18 @@ export const projects: Project[] = [
   {
     slug: "renvest",
     name: "Renvest",
-    category: "ai",
+    category: "apps",
     description: {
-      pt: "Agente de IA com RAG que ensina investidores iniciantes a partir de dados oficiais da B3 e da CVM. Meu TCC na UFC.",
-      en: "A RAG-powered AI agent that teaches beginner investors using official data from B3 and CVM. My undergraduate thesis at UFC.",
-      es: "Un agente de IA con RAG que enseña a inversores principiantes a partir de datos oficiales de B3 y CVM. Mi trabajo de grado en la UFC.",
+      pt: "Plataforma de educação financeira para investidores iniciantes, com trilhas de aprendizado, simulações e dados oficiais da B3 e da CVM. Meu TCC na UFC.",
+      en: "A financial education platform for beginner investors, with learning paths, simulations and official data from B3 and CVM. My undergraduate thesis at UFC.",
+      es: "Una plataforma de educación financiera para inversores principiantes, con rutas de aprendizaje, simulaciones y datos oficiales de B3 y CVM. Mi trabajo de grado en la UFC.",
     },
     year: 2026,
     featured: true,
     image: "/projects/renvest.png",
     url: "https://renvest-eight.vercel.app",
     repos: [],
-    stacks: ["react", "typescript", "tailwind", "vite", "python", "fastapi", "langchain", "vercel"],
+    stacks: ["react", "typescript", "tailwind", "vite", "python", "fastapi", "vercel"],
   },
   {
     slug: "data-mine",

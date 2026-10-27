@@ -8,10 +8,15 @@ import {
   getDomain,
   getProjectSections,
   getRepoName,
-  getStackNames,
+  getStacks,
   renderStackIcon,
 } from "@/lib/projects";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { ProjectTabs } from "./project-tabs";
 
 export async function Projects() {
@@ -22,7 +27,10 @@ export async function Projects() {
   return (
     <section aria-labelledby="projects-title">
       <div className="flex items-baseline justify-between gap-4">
-        <h2 id="projects-title" className="font-heading text-3xl font-medium tracking-tight">
+        <h2
+          id="projects-title"
+          className="font-heading text-3xl font-medium tracking-tight"
+        >
           {t("title")}
         </h2>
         <p className="font-mono text-sm text-muted-foreground">
@@ -39,7 +47,11 @@ export async function Projects() {
             <ol className="space-y-6">
               {items.map(({ project, index }) => (
                 <li key={project.slug}>
-                  <ProjectPanel project={project} index={index} locale={locale} />
+                  <ProjectPanel
+                    project={project}
+                    index={index}
+                    locale={locale}
+                  />
                 </li>
               ))}
             </ol>
@@ -75,7 +87,9 @@ async function ProjectPanel({
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-muted-foreground">
       {renderStackIcon(project.stacks[0], "size-14")}
       <span className="font-mono text-xs">
-        {project.repos.length === 1 ? getRepoName(project.repos[0].url) : project.slug}
+        {project.repos.length === 1
+          ? getRepoName(project.repos[0].url)
+          : project.slug}
       </span>
     </div>
   );
@@ -83,7 +97,9 @@ async function ProjectPanel({
   return (
     <article className="overflow-hidden rounded-xl border bg-card text-card-foreground">
       <div className="flex items-center gap-3 border-b px-4 py-2.5 font-mono text-xs text-muted-foreground">
-        <span className="text-foreground">{String(index + 1).padStart(2, "0")}</span>
+        <span className="text-foreground">
+          {String(index + 1).padStart(2, "0")}
+        </span>
         <span>{t("label")}</span>
         {project.featured && (
           <span className="ml-auto rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-primary">
@@ -98,7 +114,7 @@ async function ProjectPanel({
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block aspect-[16/10] overflow-hidden rounded-lg border bg-muted"
+            className="group relative block aspect-16/10 overflow-hidden rounded-lg border bg-muted"
           >
             {preview}
             <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm backdrop-blur">
@@ -108,14 +124,18 @@ async function ProjectPanel({
             {newTab}
           </a>
         ) : (
-          <div className="relative aspect-[16/10] overflow-hidden rounded-lg border bg-muted">
+          <div className="relative aspect-16/10 overflow-hidden rounded-lg border bg-muted">
             {preview}
           </div>
         )}
 
         <div className="min-w-0">
-          <h3 className="font-heading text-2xl font-medium tracking-tight">{project.name}</h3>
-          <p className="mt-1.5 text-muted-foreground">{localize(project.description, locale)}</p>
+          <h3 className="font-heading text-2xl font-medium tracking-tight">
+            {project.name}
+          </h3>
+          <p className="mt-1.5 text-muted-foreground">
+            {localize(project.description, locale)}
+          </p>
 
           <dl className="mt-5 grid grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] gap-x-4 gap-y-3 border-t pt-5 text-sm">
             <dt className="text-muted-foreground">{t("site")}</dt>
@@ -170,10 +190,15 @@ async function ProjectPanel({
                             {t(`parts.${repo.part}`)}
                           </span>
                         ) : (
-                          <GitBranch className="size-3.5 shrink-0" aria-hidden />
+                          <GitBranch
+                            className="size-3.5 shrink-0"
+                            aria-hidden
+                          />
                         )}
                         <span className="truncate">
-                          {repo.part ? getRepoName(repo.url).split("/").pop() : getRepoName(repo.url)}
+                          {repo.part
+                            ? getRepoName(repo.url).split("/").pop()
+                            : getRepoName(repo.url)}
                         </span>
                         {newTab}
                       </a>
@@ -189,7 +214,26 @@ async function ProjectPanel({
             </dd>
 
             <dt className="text-muted-foreground">{t("builtWith")}</dt>
-            <dd>{getStackNames(project.stacks).join(", ")}</dd>
+            <dd>
+              <ul className="flex flex-wrap gap-1.5">
+                {getStacks(project.stacks).map(({ id, name, icon: Icon }) => (
+                  <li key={id}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span
+                          tabIndex={0}
+                          aria-label={name}
+                          className="flex size-8 items-center justify-center rounded-md border text-muted-foreground transition-colors outline-none hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                          <Icon className="size-4" aria-hidden />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent sideOffset={4}>{name}</TooltipContent>
+                    </Tooltip>
+                  </li>
+                ))}
+              </ul>
+            </dd>
           </dl>
         </div>
       </div>

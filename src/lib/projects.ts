@@ -6,8 +6,8 @@ const stacksById = new Map<string, (typeof stacks)[number]>(
   stacks.map((stack) => [stack.id, stack]),
 );
 
-export function getStackNames(ids: StackId[]) {
-  return ids.map((id) => stacksById.get(id)?.name ?? id);
+export function getStacks(ids: StackId[]) {
+  return ids.flatMap((id) => stacksById.get(id) ?? []);
 }
 
 export function renderStackIcon(id: StackId, className: string) {
