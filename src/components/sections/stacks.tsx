@@ -8,7 +8,7 @@ export async function Stacks() {
   return (
     <section aria-labelledby="stacks-title">
       <Reveal>
-        <h2 id="stacks-title" className="font-heading text-3xl font-medium tracking-tight">
+        <h2 id="stacks-title" className="font-heading text-3xl font-medium tracking-tighter sm:text-4xl">
           {t("title")}
         </h2>
       </Reveal>

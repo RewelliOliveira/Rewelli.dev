@@ -23,6 +23,9 @@ export async function Hero() {
           <RandomLetterSwap
             label={profile.name}
             swapLabel={localize(profile.role, locale)}
+            suffix={
+              <span className="ml-[0.06em] inline-block h-[0.72em] w-[0.34em] animate-caret bg-primary" />
+            }
           />
         </h1>
         <Reveal
@@ -40,7 +43,7 @@ export async function Hero() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border bg-card px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-foreground/20 hover:bg-muted"
               >
                 <Icon className="size-4" aria-hidden />
                 {label}
@@ -54,7 +57,7 @@ export async function Hero() {
         onMount
         y={0}
         scale={0.96}
-        className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl bg-muted"
+        className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-xl border bg-muted"
       >
         <HeroVideo />
       </Reveal>

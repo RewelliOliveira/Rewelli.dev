@@ -21,3 +21,7 @@ npm run lint
 - **Imagens dos projetos**: `public/projects/` (proporção 16:10)
 - **Textos da interface**: `messages/pt.json`, `en.json`, `es.json`
 - **Cores, fontes e arredondamento**: `src/app/globals.css` e `src/app/[locale]/layout.tsx`
+
+## Créditos
+
+- `src/components/ui/random-letter-swap.tsx`: adaptado do componente Random Letter Swap do OriginKit, sob licença MIT.

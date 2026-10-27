@@ -26,7 +26,7 @@ export function ProjectTabs({
     <Tabs.Root value={value} onValueChange={setValue} className="mt-8">
       <Tabs.List
         aria-label={label}
-        className="flex gap-1 overflow-x-auto rounded-xl border bg-card p-1 scrollbar-none"
+        className="flex gap-1 overflow-x-auto scrollbar-none"
       >
         {tabs.map((tab) => {
           const isActive = tab.id === value;
@@ -34,23 +34,21 @@ export function ProjectTabs({
             <Tabs.Trigger
               key={tab.id}
               value={tab.id}
-              className="relative flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring data-[state=active]:text-foreground"
+              className="relative flex shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground focus-visible:-outline-offset-2 data-[state=active]:text-foreground"
             >
               {isActive && (
                 <motion.span
                   layoutId="project-tab-active"
                   aria-hidden
-                  className="absolute inset-0 rounded-lg bg-muted"
+                  className="absolute inset-0 rounded-md bg-muted"
                   transition={{ duration: 0.35, ease: EASE_OUT }}
                 />
               )}
               <span className="relative">{tab.label}</span>
               <span
                 className={cn(
-                  "relative rounded-full px-1.5 font-mono text-xs transition-colors",
-                  isActive
-                    ? "bg-highlight text-foreground dark:text-background"
-                    : "text-muted-foreground",
+                  "relative font-mono text-xs tabular-nums transition-colors",
+                  isActive ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {tab.count}
@@ -68,7 +66,7 @@ export function ProjectTabs({
             value={tab.id}
             forceMount
             hidden={!isActive}
-            className="mt-6 outline-none"
+            className="mt-8 outline-none"
           >
             <motion.div
               initial={false}

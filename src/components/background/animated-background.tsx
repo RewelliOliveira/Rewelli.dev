@@ -16,7 +16,7 @@ export const BACKGROUND_SETTINGS = {
   sizeMax: 2,
   opacityMin: 0.15,
   opacityMax: 0.5,
-  colorVar: "--primary",
+  colorVar: "--muted-foreground",
   maxDpr: 2,
 };
 

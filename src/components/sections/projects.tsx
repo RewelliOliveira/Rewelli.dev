@@ -11,6 +11,7 @@ import {
   getStacks,
   renderStackIcon,
 } from "@/lib/projects";
+import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
 import {
@@ -30,11 +31,11 @@ export async function Projects() {
       <Reveal className="flex items-baseline justify-between gap-4">
         <h2
           id="projects-title"
-          className="font-heading text-3xl font-medium tracking-tight"
+          className="font-heading text-3xl font-medium tracking-tighter sm:text-4xl"
         >
           {t("title")}
         </h2>
-        <p className="rounded-full bg-highlight px-2 py-0.5 font-mono text-sm text-foreground dark:text-background">
+        <p className="font-mono text-sm text-muted-foreground tabular-nums">
           {t("count", { count: projects.length })}
         </p>
       </Reveal>
@@ -90,35 +91,35 @@ async function ProjectPanel({
   );
 
   return (
-    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-[translate,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-primary">
+    <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-colors duration-300 hover:border-foreground/20">
       <div className="grid gap-6 p-4 md:grid-cols-[1.15fr_1fr] md:gap-8 md:p-5">
         {project.url ? (
           <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block aspect-16/10 overflow-hidden rounded-lg border bg-muted md:aspect-auto md:min-h-72"
+            className="group relative block aspect-16/10 overflow-hidden rounded-md border bg-muted md:aspect-auto md:min-h-72"
           >
             {preview}
-            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-xs font-medium text-foreground shadow-sm backdrop-blur">
+            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-sm border bg-background px-2 py-1 text-xs font-medium text-foreground transition-colors group-hover:text-primary">
               {t("openSite")}
               <ArrowUpRight className="size-3.5" aria-hidden />
             </span>
             {newTab}
           </a>
         ) : (
-          <div className="relative aspect-16/10 overflow-hidden rounded-lg border bg-muted md:aspect-auto md:min-h-72">
+          <div className="relative aspect-16/10 overflow-hidden rounded-md border bg-muted md:aspect-auto md:min-h-72">
             {preview}
           </div>
         )}
 
         <div className="min-w-0">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="font-heading text-2xl font-medium tracking-tight">
+            <h3 className="font-heading text-xl font-medium tracking-tight">
               {project.name}
             </h3>
             {project.featured && (
-              <span className="mt-1 shrink-0 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-xs text-primary">
+              <span className="mt-0.5 shrink-0 rounded-sm border border-primary/40 bg-primary/10 px-1.5 py-0.5 font-mono text-xs text-primary">
                 {t("featured")}
               </span>
             )}
@@ -173,7 +174,7 @@ async function ProjectPanel({
                         className="inline-flex max-w-full items-center gap-1.5 hover:text-primary"
                       >
                         {repo.part ? (
-                          <span className="shrink-0 rounded border px-1.5 text-xs text-muted-foreground">
+                          <span className="shrink-0 rounded-sm border px-1.5 text-xs text-muted-foreground">
                             {t(`parts.${repo.part}`)}
                           </span>
                         ) : (
@@ -210,11 +211,11 @@ async function ProjectPanel({
                         <span
                           tabIndex={0}
                           aria-label={name}
-                          className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
+                          className="flex size-8 items-center justify-center rounded-md border text-foreground transition-colors hover:bg-muted focus-visible:bg-muted"
                         >
                           <Icon
-                            className="size-4"
-                            style={color ? { color } : undefined}
+                            className={cn("size-4", stackIconBrand)}
+                            style={stackIconVars(color)}
                             aria-hidden
                           />
                         </span>

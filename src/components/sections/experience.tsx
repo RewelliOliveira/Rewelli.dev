@@ -10,7 +10,7 @@ export async function Experience() {
   return (
     <section aria-labelledby="experience-title">
       <Reveal>
-        <h2 id="experience-title" className="font-heading text-3xl font-medium tracking-tight">
+        <h2 id="experience-title" className="font-heading text-3xl font-medium tracking-tighter sm:text-4xl">
           {t("title")}
         </h2>
       </Reveal>

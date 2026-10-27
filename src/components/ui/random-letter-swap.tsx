@@ -8,6 +8,7 @@ import { usePageVisible, usePrefersReducedMotion } from "@/lib/hooks"
 type Props = {
   label: string
   swapLabel: string
+  suffix?: React.ReactNode
   interval?: number
   reverse?: boolean
   staggerDuration?: number
@@ -30,6 +31,14 @@ const srOnlyStyle: React.CSSProperties = {
 
 const OFFSET = "120%"
 
+const slotStyle: React.CSSProperties = {
+  display: "inline-block",
+  overflow: "hidden",
+  verticalAlign: "top",
+  paddingBottom: "0.15em",
+  marginBottom: "-0.15em",
+}
+
 const shuffleArray = (arr: number[]): number[] => {
   const a = [...arr]
   a.sort(() => Math.random() - 0.5)
@@ -43,11 +52,13 @@ function Letters({
   text,
   prefix,
   restingY,
+  suffix,
   style,
   ref,
 }: {
   text: string
   prefix: string
+  suffix?: React.ReactNode
   restingY: string | number
   style?: React.CSSProperties
   ref?: React.Ref<HTMLSpanElement>
@@ -70,13 +81,7 @@ function Letters({
             {word.split("").map((letter, j) => (
               <span
                 key={j}
-                style={{
-                  display: "inline-block",
-                  overflow: "hidden",
-                  verticalAlign: "top",
-                  paddingBottom: "0.15em",
-                  marginBottom: "-0.15em",
-                }}
+                style={slotStyle}
               >
                 <motion.span
                   className={`${prefix}-${start + j}`}
@@ -86,6 +91,16 @@ function Letters({
                 </motion.span>
               </span>
             ))}
+            {suffix && w === words.length - 1 && (
+              <span style={slotStyle}>
+                <motion.span
+                  className={`${prefix}-suffix`}
+                  style={{ display: "inline-block", y: restingY }}
+                >
+                  {suffix}
+                </motion.span>
+              </span>
+            )}
           </span>
         </React.Fragment>
       ))}
@@ -96,6 +111,7 @@ function Letters({
 export function RandomLetterSwap({
   label,
   swapLabel,
+  suffix,
   interval = 3000,
   reverse = false,
   staggerDuration = 0.03,
@@ -149,6 +165,7 @@ export function RandomLetterSwap({
   }, [interval, canSwap])
 
   const firstRun = useRef(true)
+  const hasSuffix = suffix != null
 
   useEffect(() => {
     if (firstRun.current) {
@@ -166,13 +183,18 @@ export function RandomLetterSwap({
       })
     }
 
-    run(letterIndexes(label), (i) => `.letter-${i}`, showSwap ? out : 0)
-    run(
-      letterIndexes(swapLabel),
-      (i) => `.letter-secondary-${i}`,
-      showSwap ? 0 : incoming
-    )
-  }, [showSwap, label, swapLabel, out, incoming, staggerDuration, transition, animate])
+    const runSuffix = (selector: string, count: number, y: string | number) => {
+      if (!hasSuffix) return
+      animate(selector, { y }, { ...transition, delay: count * staggerDuration })
+    }
+
+    const labelIdxs = letterIndexes(label)
+    const swapIdxs = letterIndexes(swapLabel)
+    run(labelIdxs, (i) => `.letter-${i}`, showSwap ? out : 0)
+    run(swapIdxs, (i) => `.letter-secondary-${i}`, showSwap ? 0 : incoming)
+    runSuffix(".letter-suffix", labelIdxs.length, showSwap ? out : 0)
+    runSuffix(".letter-secondary-suffix", swapIdxs.length, showSwap ? 0 : incoming)
+  }, [showSwap, label, swapLabel, hasSuffix, out, incoming, staggerDuration, transition, animate])
 
   return (
     <motion.span
@@ -188,12 +210,19 @@ export function RandomLetterSwap({
       transition={{ type: "spring", duration: 0.6, bounce: 0 }}
     >
       <span style={srOnlyStyle}>{label}</span>
-      <Letters ref={primaryRef} text={label} prefix="letter" restingY={0} />
+      <Letters
+        ref={primaryRef}
+        text={label}
+        prefix="letter"
+        restingY={0}
+        suffix={suffix}
+      />
       <Letters
         ref={secondaryRef}
         text={swapLabel}
         prefix="letter-secondary"
         restingY={incoming}
+        suffix={suffix}
         style={{ position: "absolute", top: 0, left: 0, right: 0 }}
       />
     </motion.span>
