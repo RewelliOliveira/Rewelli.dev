@@ -36,7 +36,19 @@ export const projects: Project[] = [
     image: "/projects/renvest.png",
     url: "https://renvest-eight.vercel.app",
     repos: [],
-    stacks: ["react", "typescript", "tailwind", "python", "fastapi", "vercel"],
+    stacks: [
+      "react",
+      "typescript",
+      "tailwind",
+      "python",
+      "fastapi",
+      "langchain",
+      "rag",
+      "openai",
+      "supabase",
+      "docker",
+      "vercel",
+    ],
     overview: [
       {
         pt: "O Renvest é meu TCC em Engenharia de Software na UFC Quixadá. A ideia é tirar o investidor iniciante da “tela em branco”: em vez de um chat genérico, ele percorre uma trilha de missões guiado pelo Rev, um tutor que conversa e desafia.",

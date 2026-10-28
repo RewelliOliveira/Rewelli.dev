@@ -48,7 +48,7 @@ export const stacks = [
   { id: "langchain", name: "LangChain", category: "library", icon: SiLangchain, color: "#1C3C3C" },
   { id: "rag", name: "RAG", category: "ai", icon: LuDatabaseZap, color: "#7C3AED" },
   { id: "claude", name: "Claude", category: "ai", icon: SiClaude, color: "#D97757" },
-  { id: "chatgpt", name: "ChatGPT", category: "ai", icon: RiOpenaiFill, color: "#10A37F" },
+  { id: "openai", name: "OpenAI", category: "ai", icon: RiOpenaiFill, color: "#10A37F" },
   { id: "gemini", name: "Gemini", category: "ai", icon: SiGooglegemini, color: "#8E75B2" },
   { id: "ml", name: "Machine Learning", category: "ai", icon: LuBrainCircuit, color: "#E11D48" },
   { id: "scikitlearn", name: "scikit-learn", category: "library", icon: SiScikitlearn, color: "#F7931E" },
