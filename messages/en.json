@@ -27,7 +27,17 @@
       "backend": "back"
     },
     "carouselLabel": "Projects carousel",
-    "hint": "Scroll, swipe or drag to swap · click the front card for details"
+    "hint": "Swipe or drag to swap · click the front card to open the project",
+    "railHint": "Drag to browse · click the center card to open the project"
+  },
+  "project": {
+    "back": "All projects",
+    "visit": "Visit site",
+    "code": "View code",
+    "about": "About the project",
+    "highlights": "Highlights",
+    "internals": "Under the hood",
+    "next": "Next project"
   },
   "stacks": {
     "title": "Stacks",
@@ -39,12 +49,15 @@
     "experienceTab": "Experience",
     "certificatesTab": "Certificates",
     "tabsLabel": "Experience and certificates",
-    "verify": "Verify"
+    "verify": "Verify",
+    "legendWork": "Work",
+    "legendEducation": "Education",
+    "legendPlanned": "Planned",
+    "years": "{count, plural, one {# year} other {# years}}",
+    "months": "{count, plural, one {# month} other {# months}}"
   },
   "footer": {
     "cta": "Want to talk? Reach me by email or WhatsApp.",
-    "email": "Send email",
-    "copy": "Copy",
-    "copied": "Copied"
+    "email": "Send email"
   }
 }

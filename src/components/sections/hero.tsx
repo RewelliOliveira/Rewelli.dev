@@ -2,8 +2,9 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { FaLinkedin } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
 import { Reveal } from "@/components/motion/reveal";
-import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
+import { LetterReveal } from "@/components/ui/letter-reveal";
 import { profile } from "@/data/profile";
+import { brandColors } from "@/data/stacks";
 import { localize } from "@/lib/localized";
 import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
@@ -14,19 +15,22 @@ export async function Hero() {
   const t = await getTranslations("common");
 
   const links = [
-    { label: "GitHub", href: profile.github, icon: SiGithub, color: "#181717" },
-    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin, color: "#0A66C2" },
+    { label: "GitHub", href: profile.github, icon: SiGithub, color: brandColors.github },
+    { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin, color: brandColors.linkedin },
   ];
 
   return (
     <section className="grid items-center gap-10 pt-6 md:grid-cols-[1fr_320px] md:gap-16 md:pt-16">
       <div>
         <h1 className="font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl">
-          <RandomLetterSwap
-            label={profile.name}
-            swapLabel={localize(profile.role, locale)}
-          />
+          <LetterReveal text={profile.name} />
         </h1>
+        <LetterReveal
+          text={localize(profile.role, locale)}
+          delay={0.3}
+          staggerDuration={0.015}
+          className="mt-2 font-mono text-sm tracking-wider text-muted-foreground uppercase"
+        />
         <Reveal
           as="p"
           onMount
@@ -42,7 +46,7 @@ export async function Hero() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
+                className="inline-flex items-center gap-2 rounded-md border border-input bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
               >
                 <Icon
                   className={cn("size-4", stackIconBrand)}

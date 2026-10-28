@@ -63,7 +63,7 @@ export function CertificateList({
         {items.map((item, index) => {
           const content = (
             <>
-              <div className="relative aspect-16/10 w-16 shrink-0 overflow-hidden rounded-sm border bg-white sm:hidden">
+              <div className="relative aspect-16/10 w-16 shrink-0 overflow-hidden rounded-sm border bg-card sm:hidden">
                 <Image src={item.image} alt="" fill sizes="64px" className="object-contain" />
               </div>
               <p className="hidden font-mono text-sm text-muted-foreground sm:block">{item.date}</p>
@@ -122,7 +122,7 @@ export function CertificateList({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2, ease: EASE_OUT }}
-              className="pointer-events-none absolute top-0 left-0 z-10 overflow-hidden rounded-lg border bg-white shadow-xl"
+              className="pointer-events-none absolute top-0 left-0 z-10 overflow-hidden rounded-lg border bg-card shadow-xl"
             >
               {items.map((item) => (
                 <motion.div

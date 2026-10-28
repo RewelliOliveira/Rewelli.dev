@@ -3,9 +3,9 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { Reveal } from "@/components/motion/reveal";
 import { profile } from "@/data/profile";
+import { brandColors } from "@/data/stacks";
 import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
-import { CopyEmailButton } from "./copy-email-button";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -17,7 +17,7 @@ export async function Footer() {
       detail: profile.email,
       href: `mailto:${profile.email}`,
       icon: SiGmail,
-      color: "#EA4335",
+      color: brandColors.gmail,
       external: false,
     },
     {
@@ -25,13 +25,13 @@ export async function Footer() {
       detail: profile.whatsapp.display,
       href: `https://wa.me/${profile.whatsapp.number}`,
       icon: FaWhatsapp,
-      color: "#25D366",
+      color: brandColors.whatsapp,
       external: true,
     },
   ];
 
   return (
-    <footer className="border-t py-10 sm:py-16">
+    <footer className="py-10 sm:py-16">
       <Reveal>
         <p className="font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">{t("cta")}</p>
       </Reveal>
@@ -41,7 +41,7 @@ export async function Footer() {
             <a
               href={href}
               {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-              className="group flex items-center gap-3 rounded-lg border bg-card px-4 py-3 transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
+              className="group flex items-center gap-3 rounded-lg border border-input bg-card px-4 py-3 transition-colors hover:border-highlight/50 hover:bg-highlight-soft hover:text-highlight-foreground"
             >
               <span className="grid size-9 shrink-0 place-items-center rounded-md bg-muted text-foreground transition-colors group-hover:bg-background">
                 <Icon
@@ -59,9 +59,6 @@ export async function Footer() {
           </Reveal>
         ))}
       </ul>
-      <Reveal y={12} delay={0.24} className="mt-4">
-        <CopyEmailButton email={profile.email} />
-      </Reveal>
     </footer>
   );
 }

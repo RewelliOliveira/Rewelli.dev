@@ -9,7 +9,7 @@ export async function Header() {
   const t = await getTranslations("header");
 
   return (
-    <header className="flex items-center justify-between gap-4 py-6">
+    <header className="flex w-full items-center justify-between gap-4 px-4 py-6 sm:px-6 lg:px-8">
       <Link
         href="/"
         aria-label={`${profile.name} — ${t("home")}`}

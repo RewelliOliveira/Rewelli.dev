@@ -27,7 +27,17 @@
       "backend": "back"
     },
     "carouselLabel": "Carrossel de projetos",
-    "hint": "Role, deslize ou arraste para passar · clique no card da frente para ver os detalhes"
+    "hint": "Deslize ou arraste para passar · clique no card da frente para abrir o projeto",
+    "railHint": "Arraste para passar · clique no card do centro para abrir o projeto"
+  },
+  "project": {
+    "back": "Todos os projetos",
+    "visit": "Visitar site",
+    "code": "Ver código",
+    "about": "Sobre o projeto",
+    "highlights": "Destaques",
+    "internals": "Por dentro",
+    "next": "Próximo projeto"
   },
   "stacks": {
     "title": "Stacks",
@@ -39,12 +49,15 @@
     "experienceTab": "Experiência",
     "certificatesTab": "Certificados",
     "tabsLabel": "Experiência e certificados",
-    "verify": "Verificar"
+    "verify": "Verificar",
+    "legendWork": "Trabalho",
+    "legendEducation": "Formação",
+    "legendPlanned": "Previsto",
+    "years": "{count, plural, one {# ano} other {# anos}}",
+    "months": "{count, plural, one {# mês} other {# meses}}"
   },
   "footer": {
     "cta": "Quer conversar? Me chama por e-mail ou WhatsApp.",
-    "email": "Enviar e-mail",
-    "copy": "Copiar",
-    "copied": "Copiado"
+    "email": "Enviar e-mail"
   }
 }
