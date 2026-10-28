@@ -1,26 +1,34 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { EASE_OUT } from "@/components/motion/reveal";
+import { useEffect } from "react";
+import {
+  projectHref,
+  useProjectTransition,
+} from "@/components/project/project-transition";
 import FlexCarousel, {
   type FlexCarouselItem,
 } from "@/components/ui/flex-carousel";
+import { useRouter } from "@/i18n/navigation";
 import { useMediaQuery } from "@/lib/hooks";
 
 export function ProjectRail({
   items,
-  details,
+  slugs,
   label,
   hint,
 }: {
   items: FlexCarouselItem[];
-  details: ReactNode[];
+  slugs: string[];
   label: string;
   hint: string;
 }) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const router = useRouter();
+  const { open } = useProjectTransition();
+
+  useEffect(() => {
+    if (isDesktop) slugs.forEach((slug) => router.prefetch(projectHref(slug)));
+  }, [isDesktop, slugs, router]);
 
   return (
     <div className="mt-8">
@@ -34,7 +42,7 @@ export function ProjectRail({
             cardHeight={0.5}
             gap={12}
             squeeze={0.2}
-            focusOnClick
+            focusOnClick={false}
             captions
             fit="natural"
             radius={0}
@@ -50,34 +58,15 @@ export function ProjectRail({
             followCursor={false}
             autoplay={false}
             interval={4}
-            captureWheel={false}
-            onChange={() => setOpenIndex(null)}
-            onSelect={(index) => setOpenIndex(index)}
+            wheel={false}
+            onSelect={(index, item, rect) => open(slugs[index], item.src, rect)}
           />
         )}
       </div>
 
-      <p
-        className="mt-2 text-center font-mono text-xs text-muted-foreground transition-opacity duration-300 data-hidden:opacity-0"
-        data-hidden={openIndex !== null ? "" : undefined}
-      >
+      <p className="mt-2 text-center font-mono text-xs text-muted-foreground">
         {hint}
       </p>
-
-      <AnimatePresence mode="wait" initial={false}>
-        {openIndex !== null && (
-          <motion.div
-            key={openIndex}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.35, ease: EASE_OUT }}
-            className="mt-4"
-          >
-            {details[openIndex]}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

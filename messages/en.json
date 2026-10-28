@@ -27,8 +27,17 @@
       "backend": "back"
     },
     "carouselLabel": "Projects carousel",
-    "hint": "Swipe or drag to swap · click the front card for details",
-    "railHint": "Drag to browse · click the center card for details"
+    "hint": "Swipe or drag to swap · click the front card to open the project",
+    "railHint": "Drag to browse · click the center card to open the project"
+  },
+  "project": {
+    "back": "All projects",
+    "visit": "Visit site",
+    "code": "View code",
+    "about": "About the project",
+    "highlights": "Highlights",
+    "internals": "Under the hood",
+    "next": "Next project"
   },
   "stacks": {
     "title": "Stacks",

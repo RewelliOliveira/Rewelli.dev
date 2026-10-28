@@ -31,7 +31,7 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="border-t py-10 sm:py-16">
+    <footer className="py-10 sm:py-16">
       <Reveal>
         <p className="font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">{t("cta")}</p>
       </Reveal>

@@ -27,8 +27,17 @@
       "backend": "back"
     },
     "carouselLabel": "Carrossel de projetos",
-    "hint": "Deslize ou arraste para passar · clique no card da frente para ver os detalhes",
-    "railHint": "Arraste para passar · clique no card do centro para ver os detalhes"
+    "hint": "Deslize ou arraste para passar · clique no card da frente para abrir o projeto",
+    "railHint": "Arraste para passar · clique no card do centro para abrir o projeto"
+  },
+  "project": {
+    "back": "Todos os projetos",
+    "visit": "Visitar site",
+    "code": "Ver código",
+    "about": "Sobre o projeto",
+    "highlights": "Destaques",
+    "internals": "Por dentro",
+    "next": "Próximo projeto"
   },
   "stacks": {
     "title": "Stacks",

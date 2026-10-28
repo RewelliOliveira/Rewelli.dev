@@ -54,7 +54,7 @@ export interface CardSwapProps {
   intro?: boolean;
   theme?: "dark" | "light";
   ariaLabel?: string;
-  onCardClick?: (index: number) => void;
+  onCardClick?: (index: number, rect: DOMRect | null) => void;
   onChange?: (index: number) => void;
   className?: string;
   children?: ReactNode;
@@ -105,7 +105,7 @@ interface Settings {
   hoverSpread: number;
   dim: number;
   bounds: Bounds;
-  onCardClick?: (index: number) => void;
+  onCardClick?: (index: number, rect: DOMRect | null) => void;
   onChange?: (index: number) => void;
 }
 
@@ -1024,7 +1024,10 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
         );
         if (!target || !root.contains(target)) return;
         const index = Number(target.getAttribute("data-swap-index"));
-        settingsRef.current.onCardClick?.(index);
+        settingsRef.current.onCardClick?.(
+          index,
+          target.querySelector("img")?.getBoundingClientRect() ?? null,
+        );
         const position = state.order.indexOf(index);
         if (position > 0) goTo(position);
       };

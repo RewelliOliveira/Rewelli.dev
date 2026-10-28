@@ -42,10 +42,11 @@ export interface FlexCarouselProps extends Partial<PresetValues> {
   autoplay?: boolean;
   interval?: number;
   captions?: boolean;
+  wheel?: boolean;
   captureWheel?: boolean;
   ariaLabel?: string;
   onChange?: (index: number, item: FlexCarouselItem) => void;
-  onSelect?: (index: number, item: FlexCarouselItem) => void;
+  onSelect?: (index: number, item: FlexCarouselItem, rect: DOMRect | null) => void;
   className?: string;
   style?: CSSProperties;
 }
@@ -60,6 +61,7 @@ interface Settings extends PresetValues {
   focusOnClick: boolean;
   autoplay: boolean;
   interval: number;
+  wheel: boolean;
   captureWheel: boolean;
 }
 
@@ -122,7 +124,7 @@ interface Engine {
 
 interface Callbacks {
   onChange?: (index: number, item: FlexCarouselItem) => void;
-  onSelect?: (index: number, item: FlexCarouselItem) => void;
+  onSelect?: (index: number, item: FlexCarouselItem, rect: DOMRect | null) => void;
 }
 
 const photo = (id: string) => `https://images.unsplash.com/${id}?w=1200&q=80&auto=format&fit=max`;
@@ -409,6 +411,7 @@ const FlexCarousel = ({
   autoplay = false,
   interval = 4,
   captions = true,
+  wheel = true,
   captureWheel = true,
   ariaLabel = 'Image carousel',
   onChange,
@@ -455,6 +458,7 @@ const FlexCarousel = ({
       focusOnClick,
       autoplay,
       interval,
+      wheel,
       captureWheel
     };
     engineRef.current?.wake();
@@ -756,6 +760,15 @@ const FlexCarousel = ({
       dirty = true;
       start();
       return true;
+    };
+
+    const cardRect = (index: number) => {
+      const hit = instances
+        .filter(inst => inst.index === index)
+        .sort((a, b) => Math.abs((a.x0 + a.x1) / 2 - width / 2) - Math.abs((b.x0 + b.x1) / 2 - width / 2))[0];
+      if (!hit) return null;
+      const box = container.getBoundingClientRect();
+      return new DOMRect(box.left + hit.x0, box.top + hit.y0, hit.x1 - hit.x0, hit.y1 - hit.y0);
     };
 
     const skipIntro = () => {
@@ -1098,7 +1111,7 @@ const FlexCarousel = ({
       }
 
       let nextHover = '';
-      if (pointer.over && !pointer.dragging && introState.done && s.focusOnClick) {
+      if (pointer.over && !pointer.dragging && introState.done && (s.focusOnClick || callbacksRef.current.onSelect)) {
         const hit = instances.find(
           inst => pointer.x >= inst.x0 && pointer.x <= inst.x1 && pointer.y >= inst.y0 && pointer.y <= inst.y1
         );
@@ -1218,7 +1231,7 @@ const FlexCarousel = ({
       const hit = instances.find(inst => x >= inst.x0 && x <= inst.x1 && y >= inst.y0 && y <= inst.y1);
       if (!hit) return;
       if (hit.index === activeIndex && Math.abs(goal - pos) < 2) {
-        callbacksRef.current.onSelect?.(hit.index, itemsRef.current[hit.index]);
+        callbacksRef.current.onSelect?.(hit.index, itemsRef.current[hit.index], cardRect(hit.index));
         if (s.focusOnClick) openFocus(hit.index);
       } else {
         const rel = (hit.x0 + hit.x1) / 2 - width / 2;
@@ -1248,7 +1261,7 @@ const FlexCarousel = ({
 
     const onWheel = (e: WheelEvent) => {
       const s = settingsRef.current;
-      if (!s || e.ctrlKey) return;
+      if (!s || !s.wheel || e.ctrlKey) return;
       let dx = e.deltaX;
       let dy = e.deltaY;
       if (e.shiftKey && Math.abs(dx) < Math.abs(dy)) {
@@ -1298,7 +1311,7 @@ const FlexCarousel = ({
       } else if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (closeFocus() || activeIndex < 0) return;
-        callbacksRef.current.onSelect?.(activeIndex, itemsRef.current[activeIndex]);
+        callbacksRef.current.onSelect?.(activeIndex, itemsRef.current[activeIndex], cardRect(activeIndex));
         if (s.focusOnClick) openFocus(activeIndex);
       }
     };
@@ -1373,7 +1386,7 @@ const FlexCarousel = ({
   return (
     <div
       ref={containerRef}
-      className={`relative h-full w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none [-webkit-tap-highlight-color:transparent] focus-visible:shadow-[inset_0_0_0_2px_rgba(128,128,140,0.55)] data-[hover=open]:cursor-zoom-in data-[hover=close]:cursor-zoom-out data-[dragging]:cursor-grabbing ${className}`.trim()}
+      className={`relative h-full w-full cursor-grab touch-pan-y select-none overflow-hidden outline-none [-webkit-tap-highlight-color:transparent] focus-visible:shadow-[inset_0_0_0_2px_rgba(128,128,140,0.55)] data-[hover=open]:cursor-zoom-in data-[hover=close]:cursor-zoom-out data-[dragging]:cursor-grabbing ${className}`.trim()}
       style={{ ...style, '--flex-carousel-half': `${Math.min(Math.max(cardHeight, 0.05), 1) * 50}%` } as CSSProperties}
       role="region"
       aria-roledescription="carousel"
