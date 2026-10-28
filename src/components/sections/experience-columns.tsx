@@ -36,20 +36,13 @@ export function ExperienceColumns({ items }: { items: ExperienceItem[] }) {
   ] as const;
 
   return (
-    <div className="grid gap-10 sm:grid-cols-2 sm:gap-0">
+    <Reveal className="grid gap-10 sm:grid-cols-2 sm:gap-0">
       {columns.map((column, columnIndex) => {
         const columnItems = items.filter((item) => item.kind === column.kind);
 
         return (
-          <Reveal
-            key={column.kind}
-            delay={columnIndex * 0.1}
-            className={cn(columnIndex === 0 ? "sm:pr-8" : "sm:border-l sm:pl-8")}
-          >
-            <h3 className="flex items-baseline justify-between pb-3 font-mono text-xs tracking-wider text-muted-foreground uppercase">
-              {column.label}
-              <span className="tabular-nums">{String(columnItems.length).padStart(2, "0")}</span>
-            </h3>
+          <div key={column.kind} className={cn(columnIndex === 0 ? "sm:pr-8" : "sm:border-l sm:pl-8")}>
+            <h3 className="pb-3 font-mono text-xs tracking-wider text-muted-foreground uppercase">{column.label}</h3>
 
             <ol className="group/list border-b">
               {columnItems.map((item) => {
@@ -95,9 +88,9 @@ export function ExperienceColumns({ items }: { items: ExperienceItem[] }) {
                 );
               })}
             </ol>
-          </Reveal>
+          </div>
         );
       })}
-    </div>
+    </Reveal>
   );
 }
