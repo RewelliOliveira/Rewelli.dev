@@ -54,7 +54,7 @@ export interface CardSwapProps {
   intro?: boolean;
   theme?: "dark" | "light";
   ariaLabel?: string;
-  onCardClick?: (index: number) => void;
+  onCardClick?: (index: number, rect: DOMRect | null) => void;
   onChange?: (index: number) => void;
   className?: string;
   children?: ReactNode;
@@ -105,7 +105,7 @@ interface Settings {
   hoverSpread: number;
   dim: number;
   bounds: Bounds;
-  onCardClick?: (index: number) => void;
+  onCardClick?: (index: number, rect: DOMRect | null) => void;
   onChange?: (index: number) => void;
 }
 
@@ -176,26 +176,26 @@ interface SwapApi {
 
 const THEMES: Record<"dark" | "light", Record<string, string>> = {
   dark: {
-    "--swap-tile": "linear-gradient(180deg, #3a3644 0%, #27242f 100%)",
-    "--swap-tile-edge": "rgba(255, 255, 255, 0.07)",
-    "--swap-tile-highlight": "rgba(255, 255, 255, 0.12)",
+    "--swap-tile": "linear-gradient(180deg, var(--muted) 0%, var(--card) 100%)",
+    "--swap-tile-edge": "color-mix(in srgb, var(--foreground) 8%, transparent)",
+    "--swap-tile-highlight": "color-mix(in srgb, var(--foreground) 12%, transparent)",
     "--swap-shadow":
-      "0 30px 60px -24px rgba(0, 0, 0, 0.8), 0 10px 24px -12px rgba(0, 0, 0, 0.55)",
-    "--swap-media-edge": "rgba(255, 255, 255, 0.06)",
-    "--swap-ink": "#f4f4f5",
-    "--swap-badge": "rgba(255, 255, 255, 0.08)",
-    "--swap-shade": "#100e15",
+      "0 30px 60px -24px color-mix(in srgb, var(--background) 80%, transparent), 0 10px 24px -12px color-mix(in srgb, var(--background) 55%, transparent)",
+    "--swap-media-edge": "color-mix(in srgb, var(--foreground) 6%, transparent)",
+    "--swap-ink": "var(--foreground)",
+    "--swap-badge": "color-mix(in srgb, var(--foreground) 8%, transparent)",
+    "--swap-shade": "var(--background)",
   },
   light: {
-    "--swap-tile": "linear-gradient(180deg, #ffffff 0%, #f6f6f8 100%)",
-    "--swap-tile-edge": "rgba(24, 24, 27, 0.08)",
-    "--swap-tile-highlight": "rgba(255, 255, 255, 1)",
+    "--swap-tile": "linear-gradient(180deg, var(--card) 0%, var(--background) 100%)",
+    "--swap-tile-edge": "color-mix(in srgb, var(--foreground) 10%, transparent)",
+    "--swap-tile-highlight": "var(--card)",
     "--swap-shadow":
-      "0 30px 60px -28px rgba(24, 24, 27, 0.35), 0 10px 24px -14px rgba(24, 24, 27, 0.2)",
-    "--swap-media-edge": "rgba(24, 24, 27, 0.06)",
-    "--swap-ink": "#27272a",
-    "--swap-badge": "rgba(24, 24, 27, 0.05)",
-    "--swap-shade": "#ffffff",
+      "0 30px 60px -28px color-mix(in srgb, var(--foreground) 35%, transparent), 0 10px 24px -14px color-mix(in srgb, var(--foreground) 20%, transparent)",
+    "--swap-media-edge": "color-mix(in srgb, var(--foreground) 6%, transparent)",
+    "--swap-ink": "var(--foreground)",
+    "--swap-badge": "color-mix(in srgb, var(--foreground) 5%, transparent)",
+    "--swap-shade": "var(--card)",
   },
 };
 
@@ -1024,7 +1024,10 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
         );
         if (!target || !root.contains(target)) return;
         const index = Number(target.getAttribute("data-swap-index"));
-        settingsRef.current.onCardClick?.(index);
+        settingsRef.current.onCardClick?.(
+          index,
+          target.querySelector("img")?.getBoundingClientRect() ?? null,
+        );
         const position = state.order.indexOf(index);
         if (position > 0) goTo(position);
       };

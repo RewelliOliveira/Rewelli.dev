@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, DM_Mono, DM_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locale as rootLocale } from "next/root-params";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -10,22 +10,20 @@ import { profile } from "@/data/profile";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-bricolage",
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
 });
 
-const dmMono = DM_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-dm-mono",
+  variable: "--font-jetbrains-mono",
 });
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -74,7 +72,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
   return (
     <html
       lang={locale}
-      className={`${bricolage.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${spaceMono.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>

@@ -4,7 +4,7 @@ import { experience } from "@/data/experience";
 import { Reveal } from "@/components/motion/reveal";
 import { localize } from "@/lib/localized";
 import { CertificateList } from "./certificate-list";
-import { ExperienceTimeline } from "./experience-timeline";
+import { ExperienceColumns } from "./experience-columns";
 import { ProjectTabs } from "./project-tabs";
 
 export async function Experience() {
@@ -12,10 +12,11 @@ export async function Experience() {
   const t = await getTranslations("experience");
   const tCommon = await getTranslations("common");
 
-  const timelineItems = experience.map((item) => ({
-    id: `${item.start}-${item.place}`,
-    period: `${item.start} — ${item.end ?? t("present")}`,
-    current: !item.end,
+  const experienceItems = experience.map((item) => ({
+    id: `${item.start}-${item.place}`.replace(/\W+/g, "-"),
+    start: item.start,
+    end: item.end,
+    kind: item.kind,
     role: localize(item.role, locale),
     place: item.place,
     summary: localize(item.summary, locale),
@@ -45,7 +46,7 @@ export async function Experience() {
             id: "experience",
             label: t("experienceTab"),
             count: experience.length,
-            content: <ExperienceTimeline items={timelineItems} />,
+            content: <ExperienceColumns items={experienceItems} />,
           },
           {
             id: "certificates",

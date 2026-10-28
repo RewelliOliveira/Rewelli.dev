@@ -7,15 +7,17 @@ import { Stacks } from "@/components/sections/stacks";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-[960px] px-4 sm:px-6">
+    <div className="overflow-x-clip">
       <Header />
-      <main className="space-y-16 pb-16 sm:space-y-24 sm:pb-24 md:space-y-32 md:pb-32">
-        <Hero />
-        <Projects />
-        <Stacks />
-        <Experience />
-      </main>
-      <Footer />
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <main className="space-y-16 pb-16 sm:space-y-24 sm:pb-24 md:space-y-32 md:pb-32">
+          <Hero />
+          <Projects />
+          <Stacks />
+          <Experience />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

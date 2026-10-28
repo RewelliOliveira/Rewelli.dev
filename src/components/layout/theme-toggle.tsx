@@ -13,7 +13,7 @@ import { useMounted } from "@/lib/hooks";
 export function ThemeToggle() {
   const t = useTranslations("header");
   const { resolvedTheme } = useTheme();
-  const { toggleTheme } = useThemeToggle({ variant: "circle", start: "top-right" });
+  const { toggleTheme } = useThemeToggle({ start: "top-right" });
   const mounted = useMounted();
   const label = t("toggleTheme");
   const isDark = mounted && resolvedTheme === "dark";
