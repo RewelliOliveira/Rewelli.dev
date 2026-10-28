@@ -27,7 +27,7 @@
       "backend": "back"
     },
     "carouselLabel": "Projects carousel",
-    "hint": "Scroll, swipe or drag to swap · click the front card for details"
+    "hint": "Swipe or drag to swap · click the front card for details"
   },
   "stacks": {
     "title": "Stacks",
@@ -43,8 +43,6 @@
   },
   "footer": {
     "cta": "Want to talk? Reach me by email or WhatsApp.",
-    "email": "Send email",
-    "copy": "Copy",
-    "copied": "Copied"
+    "email": "Send email"
   }
 }

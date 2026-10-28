@@ -6,7 +6,6 @@ import { profile } from "@/data/profile";
 import { brandColors } from "@/data/stacks";
 import { stackIconBrand, stackIconVars } from "@/lib/stack-color";
 import { cn } from "@/lib/utils";
-import { CopyEmailButton } from "./copy-email-button";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -60,9 +59,6 @@ export async function Footer() {
           </Reveal>
         ))}
       </ul>
-      <Reveal y={12} delay={0.24} className="mt-4">
-        <CopyEmailButton email={profile.email} />
-      </Reveal>
     </footer>
   );
 }

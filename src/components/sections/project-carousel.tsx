@@ -44,7 +44,6 @@ export function ProjectCarousel({
           hoverSpread={isMobile ? 0 : 0.12}
           dim={0.5}
           draggable
-          wheel
           onChange={(index) => {
             setFront(index);
             setOpenIndex(null);

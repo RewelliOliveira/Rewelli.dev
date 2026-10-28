@@ -27,7 +27,7 @@
       "backend": "back"
     },
     "carouselLabel": "Carrossel de projetos",
-    "hint": "Role, deslize ou arraste para passar · clique no card da frente para ver os detalhes"
+    "hint": "Deslize ou arraste para passar · clique no card da frente para ver os detalhes"
   },
   "stacks": {
     "title": "Stacks",
@@ -43,8 +43,6 @@
   },
   "footer": {
     "cta": "Quer conversar? Me chama por e-mail ou WhatsApp.",
-    "email": "Enviar e-mail",
-    "copy": "Copiar",
-    "copied": "Copiado"
+    "email": "Enviar e-mail"
   }
 }

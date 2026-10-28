@@ -15,7 +15,7 @@ function luminance(hex: string) {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
-export function contrastRatio(a: string, b: string) {
+function contrastRatio(a: string, b: string) {
   const [high, low] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (high + 0.05) / (low + 0.05);
 }

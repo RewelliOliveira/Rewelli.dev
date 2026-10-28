@@ -36,12 +36,13 @@ export const experience: Experience[] = [
   },
   {
     start: "10/2025",
+    end: "09/2026",
     role: { pt: "Desenvolvedor de Software", en: "Software Developer", es: "Desarrollador de Software" },
     place: "Avante Tech Jr.",
     summary: {
-      pt: "ERP web em React e TypeScript. Faço code reviews, ajudo a definir a arquitetura de componentes e mantenho a esteira de CI/CD com GitHub Actions.",
-      en: "Web ERP in React and TypeScript. I do code reviews, help shape the component architecture and maintain the CI/CD pipeline on GitHub Actions.",
-      es: "ERP web en React y TypeScript. Hago code reviews, ayudo a definir la arquitectura de componentes y mantengo el pipeline de CI/CD con GitHub Actions.",
+      pt: "ERP web em React e TypeScript. Fiz code reviews, ajudei a definir a arquitetura de componentes e mantive a esteira de CI/CD com GitHub Actions.",
+      en: "Web ERP in React and TypeScript. I did code reviews, helped shape the component architecture and maintained the CI/CD pipeline on GitHub Actions.",
+      es: "ERP web en React y TypeScript. Hice code reviews, ayudé a definir la arquitectura de componentes y mantuve el pipeline de CI/CD con GitHub Actions.",
     },
   },
   {
