@@ -72,7 +72,7 @@ export function CertificateList({
                   {item.name}
                 </h3>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  {item.issuer}
+                  <span translate="no">{item.issuer}</span>
                   <span className="font-mono sm:hidden"> · {item.date}</span>
                 </p>
               </div>

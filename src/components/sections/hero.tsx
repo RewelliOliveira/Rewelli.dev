@@ -49,7 +49,7 @@ export async function Hero() {
                   style={stackIconVars(color)}
                   aria-hidden
                 />
-                {label}
+                <span translate="no">{label}</span>
                 <span className="sr-only">{t("newTab")}</span>
               </a>
             </Reveal>

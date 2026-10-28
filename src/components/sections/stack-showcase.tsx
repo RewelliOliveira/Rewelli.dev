@@ -73,7 +73,7 @@ export function StackShowcase() {
               style={stackIconVars(active.color)}
               aria-hidden
             />
-            <p className="font-heading text-xl font-medium tracking-tight sm:text-3xl">
+            <p translate="no" className="font-heading text-xl font-medium tracking-tight sm:text-3xl">
               {active.name}
             </p>
           </motion.div>

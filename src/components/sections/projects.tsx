@@ -64,7 +64,7 @@ async function ProjectPanel({
     <article className="overflow-hidden rounded-xl border bg-card text-card-foreground transition-colors duration-300 hover:border-highlight/40">
       <div className="grid gap-6 p-4 md:grid-cols-[1fr_1.1fr] md:gap-8 md:p-5">
         <div className="min-w-0">
-          <h3 className="font-heading text-xl font-medium tracking-tight">
+          <h3 translate="no" className="font-heading text-xl font-medium tracking-tight">
             {project.name}
           </h3>
           <p className="mt-1.5 text-muted-foreground">
@@ -165,7 +165,7 @@ async function ProjectPanel({
                         />
                       </span>
                     </TooltipTrigger>
-                    <TooltipContent sideOffset={4}>{name}</TooltipContent>
+                    <TooltipContent sideOffset={4} translate="no">{name}</TooltipContent>
                   </Tooltip>
                 </li>
               ))}

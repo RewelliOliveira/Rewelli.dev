@@ -52,7 +52,7 @@ export async function Footer() {
               </span>
               <span className="min-w-0">
                 <span className="block text-sm font-medium">{label}</span>
-                <span className="block truncate font-mono text-xs text-muted-foreground">{detail}</span>
+                <span translate="no" className="block truncate font-mono text-xs text-muted-foreground">{detail}</span>
               </span>
               {external && <span className="sr-only">{tCommon("newTab")}</span>}
             </a>

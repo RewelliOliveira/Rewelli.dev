@@ -199,6 +199,7 @@ export function RandomLetterSwap({
   return (
     <motion.span
       ref={scope}
+      translate="no"
       className={className}
       style={{ display: "block", position: "relative", ...style }}
       initial={false}
