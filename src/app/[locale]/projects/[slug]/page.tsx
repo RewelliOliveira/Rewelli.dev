@@ -81,7 +81,7 @@ export default async function ProjectPage({
   return (
     <div className="overflow-x-clip">
       <Header />
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <main className="pb-16 sm:pb-24 md:pb-32">
           <Reveal onMount delay={0.3} y={8}>
             <Link
