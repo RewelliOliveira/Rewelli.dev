@@ -39,6 +39,15 @@ export function useMounted() {
   );
 }
 
+const getNowMonth = () => {
+  const now = new Date();
+  return now.getFullYear() * 12 + now.getMonth();
+};
+
+export function useNowMonth() {
+  return useSyncExternalStore<number | null>(subscribeNothing, getNowMonth, () => null);
+}
+
 export function useMediaQuery(query: string) {
   const subscribe = useCallback(
     (callback: () => void) => {

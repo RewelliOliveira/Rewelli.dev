@@ -27,7 +27,8 @@
       "backend": "back"
     },
     "carouselLabel": "Carrusel de proyectos",
-    "hint": "Desliza o arrastra para pasar · haz clic en la tarjeta del frente para ver los detalles"
+    "hint": "Desliza o arrastra para pasar · haz clic en la tarjeta del frente para ver los detalles",
+    "railHint": "Arrastra para pasar · haz clic en la tarjeta central para ver los detalles"
   },
   "stacks": {
     "title": "Stacks",
@@ -39,7 +40,12 @@
     "experienceTab": "Experiencia",
     "certificatesTab": "Certificados",
     "tabsLabel": "Experiencia y certificados",
-    "verify": "Verificar"
+    "verify": "Verificar",
+    "legendWork": "Trabajo",
+    "legendEducation": "Formación",
+    "legendPlanned": "Previsto",
+    "years": "{count, plural, one {# año} other {# años}}",
+    "months": "{count, plural, one {# mes} other {# meses}}"
   },
   "footer": {
     "cta": "¿Hablamos? Escríbeme por correo o WhatsApp.",

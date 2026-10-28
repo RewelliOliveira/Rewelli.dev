@@ -15,11 +15,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ProjectCarousel } from "./project-carousel";
+import { ProjectRail } from "./project-rail";
 
 export async function Projects() {
   const locale = await getLocale();
   const t = await getTranslations("projects");
   const shown = projects.filter((project) => project.image);
+  const details = shown.map((project) => (
+    <ProjectPanel key={project.slug} project={project} locale={locale} />
+  ));
 
   return (
     <section aria-labelledby="projects-title">
@@ -34,18 +38,30 @@ export async function Projects() {
           {t("count", { count: shown.length })}
         </p>
       </Reveal>
-      <ProjectCarousel
-        label={t("carouselLabel")}
-        hint={t("hint")}
-        items={shown.map((project) => ({
-          image: project.image,
-          alt: t("preview", { name: project.name }),
-          title: project.name,
-        }))}
-        details={shown.map((project) => (
-          <ProjectPanel key={project.slug} project={project} locale={locale} />
-        ))}
-      />
+      <div className="lg:hidden">
+        <ProjectCarousel
+          label={t("carouselLabel")}
+          hint={t("hint")}
+          items={shown.map((project) => ({
+            image: project.image,
+            alt: t("preview", { name: project.name }),
+            title: project.name,
+          }))}
+          details={details}
+        />
+      </div>
+      <div className="hidden lg:block">
+        <ProjectRail
+          label={t("carouselLabel")}
+          hint={t("railHint")}
+          items={shown.map((project) => ({
+            src: project.image ?? "",
+            alt: t("preview", { name: project.name }),
+            title: project.name,
+          }))}
+          details={details}
+        />
+      </div>
     </section>
   );
 }

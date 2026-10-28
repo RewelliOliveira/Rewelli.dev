@@ -3,6 +3,7 @@ import type { Localized } from "@/lib/localized";
 export type Experience = {
   start: string;
   end?: string;
+  kind: "work" | "education";
   role: Localized;
   place: string;
   summary: Localized;
@@ -11,6 +12,7 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     start: "12/2025",
+    kind: "work",
     role: { pt: "Desenvolvedor Full-Stack", en: "Full-Stack Developer", es: "Desarrollador Full-Stack" },
     place: "OPEN 7 · Pinheiro Supermercado",
     summary: {
@@ -21,6 +23,7 @@ export const experience: Experience[] = [
   },
   {
     start: "11/2025",
+    kind: "work",
     end: "04/2026",
     role: {
       pt: "Desenvolvedor Front-end (Bolsista)",
@@ -36,6 +39,7 @@ export const experience: Experience[] = [
   },
   {
     start: "10/2025",
+    kind: "work",
     end: "09/2026",
     role: { pt: "Desenvolvedor de Software", en: "Software Developer", es: "Desarrollador de Software" },
     place: "Avante Tech Jr.",
@@ -47,6 +51,7 @@ export const experience: Experience[] = [
   },
   {
     start: "03/2023",
+    kind: "education",
     end: "12/2026",
     role: {
       pt: "Bacharelado em Engenharia de Software",
@@ -62,6 +67,7 @@ export const experience: Experience[] = [
   },
   {
     start: "03/2020",
+    kind: "education",
     end: "12/2022",
     role: {
       pt: "Ensino Técnico em Informática",
