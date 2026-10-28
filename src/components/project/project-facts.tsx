@@ -15,7 +15,7 @@ import {
 
 function Fact({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="min-w-0 space-y-2">
+    <div className="min-w-0 space-y-1.5">
       <dt className="font-mono text-xs text-muted-foreground">{label}</dt>
       <dd className="min-w-0 text-sm">{children}</dd>
     </div>
@@ -28,7 +28,7 @@ export async function ProjectFacts({ project }: { project: Project }) {
   const newTab = <span className="sr-only">{tCommon("newTab")}</span>;
 
   return (
-    <dl className="grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-1">
+    <dl className="grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-1">
       <Fact label={t("status")}>
         <span className="flex items-center gap-2">
           <span

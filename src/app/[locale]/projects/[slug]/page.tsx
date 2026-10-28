@@ -82,7 +82,7 @@ export default async function ProjectPage({
     <div className="overflow-x-clip">
       <Header />
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <main className="pb-16 sm:pb-24 md:pb-32">
+        <main className="pb-16 sm:pb-24">
           <Reveal onMount delay={0.3} y={8}>
             <Link
               href="/#projects"
@@ -93,7 +93,7 @@ export default async function ProjectPage({
             </Link>
           </Reveal>
 
-          <div className="mt-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 sm:mt-14">
+          <div className="mt-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 sm:mt-10">
             <div className="min-w-0">
               <Reveal onMount delay={0.35} y={12}>
                 <p className="font-mono text-sm text-muted-foreground tabular-nums">
@@ -103,14 +103,14 @@ export default async function ProjectPage({
                 </p>
               </Reveal>
               <Reveal onMount delay={0.4} y={16}>
-                <h1 className="mt-3 font-heading text-5xl font-medium tracking-tighter sm:text-7xl">
+                <h1 className="mt-2 font-heading text-4xl font-medium tracking-tighter text-balance wrap-break-word sm:text-5xl lg:text-6xl">
                   {project.name}
                 </h1>
               </Reveal>
             </div>
-            <Reveal onMount delay={0.5} y={12} className="flex flex-wrap gap-2">
+            <Reveal onMount delay={0.5} y={12} className="flex w-full flex-wrap gap-2 sm:w-auto">
               {project.url && (
-                <Button asChild size="lg" className="px-3.5">
+                <Button asChild size="lg" className="flex-1 px-3.5 sm:flex-none">
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
                     {t("visit")}
                     <ArrowUpRight data-icon="inline-end" aria-hidden />
@@ -119,7 +119,7 @@ export default async function ProjectPage({
                 </Button>
               )}
               {project.repos[0] && (
-                <Button asChild size="lg" variant="outline" className="px-3.5">
+                <Button asChild size="lg" variant="outline" className="flex-1 px-3.5 sm:flex-none">
                   <a href={project.repos[0].url} target="_blank" rel="noopener noreferrer">
                     <SiGithub data-icon="inline-start" aria-hidden />
                     {t("code")}
@@ -131,7 +131,7 @@ export default async function ProjectPage({
           </div>
 
           <Reveal onMount delay={0.45} y={12}>
-            <p className="mt-6 max-w-2xl text-lg text-pretty text-muted-foreground sm:text-xl">
+            <p className="mt-4 max-w-2xl text-base text-pretty text-muted-foreground sm:mt-5 sm:text-lg">
               {text(project.description)}
             </p>
           </Reveal>
@@ -140,24 +140,24 @@ export default async function ProjectPage({
             slug={project.slug}
             src={project.image ?? ""}
             alt={tProjects("preview", { name: project.name })}
-            className="mt-10 aspect-16/10 w-full rounded-xl border bg-card object-cover sm:mt-14"
+            className="mt-8 aspect-16/10 w-full rounded-xl border bg-card object-cover sm:mt-10"
           />
 
-          <div className="mt-16 grid gap-14 sm:mt-24 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-24">
+          <div className="mt-12 grid gap-12 sm:mt-16 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
             <Reveal className="lg:sticky lg:top-10 lg:self-start">
               <ProjectFacts project={project} />
             </Reveal>
 
-            <div className="space-y-20 sm:space-y-28">
+            <div className="space-y-14 sm:space-y-20">
               <section aria-labelledby="about-title">
                 <Reveal>
                   <h2 id="about-title" className="font-mono text-sm text-muted-foreground">
                     {t("about")}
                   </h2>
                 </Reveal>
-                <div className="mt-6 max-w-2xl space-y-5">
+                <div className="mt-4 max-w-2xl space-y-4">
                   {project.overview.map((paragraph, i) => (
-                    <Reveal key={i} as="p" delay={i * 0.06} className="text-xl leading-relaxed text-pretty first:text-foreground not-first:text-muted-foreground sm:text-2xl sm:leading-relaxed">
+                    <Reveal key={i} as="p" delay={i * 0.06} className="text-base leading-relaxed text-pretty first:text-foreground not-first:text-muted-foreground sm:text-lg sm:leading-relaxed">
                       {text(paragraph)}
                     </Reveal>
                   ))}
@@ -170,21 +170,21 @@ export default async function ProjectPage({
                     {t("highlights")}
                   </h2>
                 </Reveal>
-                <ol className="mt-6 grid gap-x-10 sm:grid-cols-2">
+                <ol className="mt-4 grid gap-x-8 sm:grid-cols-2">
                   {project.highlights.map((highlight, i) => (
                     <Reveal
                       key={i}
                       as="li"
                       delay={(i % 2) * 0.08}
-                      className="border-t py-6"
+                      className="border-t py-5"
                     >
                       <span className="font-mono text-xs text-highlight-foreground tabular-nums">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="mt-3 font-heading text-lg font-medium tracking-tight">
+                      <h3 className="mt-2 font-heading text-base font-medium tracking-tight sm:text-lg">
                         {text(highlight.title)}
                       </h3>
-                      <p className="mt-1.5 text-pretty text-muted-foreground">
+                      <p className="mt-1 text-sm text-pretty text-muted-foreground sm:text-base">
                         {text(highlight.text)}
                       </p>
                     </Reveal>
@@ -198,15 +198,15 @@ export default async function ProjectPage({
                     {t("internals")}
                   </h2>
                 </Reveal>
-                <ul className="mt-6 max-w-2xl">
+                <ul className="mt-4 max-w-2xl">
                   {project.internals.map((note, i) => (
                     <Reveal
                       key={i}
                       as="li"
                       delay={i * 0.05}
-                      className="grid grid-cols-[1.5rem_minmax(0,1fr)] border-b py-4 text-pretty first:pt-0"
+                      className="grid grid-cols-[1.25rem_minmax(0,1fr)] border-b py-3.5 text-sm text-pretty first:pt-0 sm:text-base"
                     >
-                      <span aria-hidden className="mt-3 h-px w-3 bg-highlight" />
+                      <span aria-hidden className="mt-2.5 h-px w-3 bg-highlight sm:mt-3" />
                       {text(note)}
                     </Reveal>
                   ))}
@@ -216,19 +216,19 @@ export default async function ProjectPage({
           </div>
 
           {next.slug !== project.slug && (
-            <Reveal className="mt-24 sm:mt-32">
+            <Reveal className="mt-16 sm:mt-24">
               <ProjectLink
                 slug={next.slug}
                 src={next.image ?? ""}
                 radius={9}
-                className="group grid items-center gap-6 border-t pt-8 sm:grid-cols-[minmax(0,1fr)_18rem]"
+                className="group grid grid-cols-[minmax(0,1fr)_7rem] items-center gap-4 border-t pt-6 sm:grid-cols-[minmax(0,1fr)_14rem] sm:gap-6 sm:pt-8"
               >
-                <div>
+                <div className="min-w-0">
                   <p className="font-mono text-sm text-muted-foreground">{t("next")}</p>
-                  <p className="mt-2 flex items-center gap-3 font-heading text-4xl font-medium tracking-tighter transition-colors group-hover:text-highlight-foreground sm:text-5xl">
+                  <p className="mt-1.5 flex items-center gap-2 font-heading text-2xl font-medium tracking-tighter transition-colors group-hover:text-highlight-foreground sm:gap-3 sm:text-3xl">
                     {next.name}
                     <ArrowRight
-                      className="size-7 transition-transform duration-300 group-hover:translate-x-1.5 sm:size-9"
+                      className="size-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1.5 sm:size-6"
                       aria-hidden
                     />
                   </p>
