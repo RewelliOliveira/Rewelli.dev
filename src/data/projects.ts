@@ -200,6 +200,87 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "mybag",
+    name: "MyBag",
+    description: {
+      pt: "App de finanças pessoais: contas, transações recorrentes e parceladas, orçamentos mensais e relatórios.",
+      en: "A personal finance app: accounts, recurring and installment transactions, monthly budgets and reports.",
+      es: "Una app de finanzas personales: cuentas, transacciones recurrentes y en cuotas, presupuestos mensuales e informes.",
+    },
+    image: "/projects/mybag.png",
+    url: "https://my-bag-psi.vercel.app",
+    repos: [{ url: "https://github.com/RewelliOliveira/MyBag" }],
+    stacks: ["react", "typescript", "tailwind", "vercel"],
+    overview: [
+      {
+        pt: "Um app para organizar o dinheiro do mês. A tela inicial responde logo a pergunta principal, quanto você tem e em quantas contas, e mostra o que entrou, o que saiu e quais orçamentos estão perto do limite.",
+        en: "An app for keeping the month's money in order. The home screen answers the main question right away, how much you have and across how many accounts, and shows what came in, what went out and which budgets are close to the limit.",
+        es: "Una app para organizar el dinero del mes. La pantalla inicial responde de entrada la pregunta principal, cuánto tienes y en cuántas cuentas, y muestra lo que entró, lo que salió y qué presupuestos están cerca del límite.",
+      },
+      {
+        pt: "O foco foi tornar o registro de gastos rápido o bastante para virar hábito, com o formulário lembrando a última conta usada e mostrando o impacto no orçamento antes de salvar.",
+        en: "The focus was making expense logging fast enough to become a habit, with the form remembering the last account used and showing the budget impact before saving.",
+        es: "El foco fue que registrar gastos fuera lo bastante rápido para volverse un hábito, con el formulario recordando la última cuenta usada y mostrando el impacto en el presupuesto antes de guardar.",
+      },
+    ],
+    highlights: [
+      {
+        title: { pt: "Transações recorrentes", en: "Recurring transactions", es: "Transacciones recurrentes" },
+        text: {
+          pt: "Lançamentos únicos, fixos ou parcelados, repetindo todo dia, toda semana, todo mês ou no último dia do mês, agrupados por dia e com filtros.",
+          en: "One-off, fixed or installment entries, repeating daily, weekly, monthly or on the last day of the month, grouped by day and filterable.",
+          es: "Movimientos únicos, fijos o en cuotas, que se repiten cada día, cada semana, cada mes o el último día del mes, agrupados por día y con filtros.",
+        },
+      },
+      {
+        title: { pt: "Orçamentos", en: "Budgets", es: "Presupuestos" },
+        text: {
+          pt: "Metas mensais por categoria, com aviso a partir de 80% do valor e alerta quando o limite é ultrapassado.",
+          en: "Monthly targets per category, with a warning from 80% of the amount and an alert once the limit is passed.",
+          es: "Metas mensuales por categoría, con aviso a partir del 80% del valor y alerta cuando se supera el límite.",
+        },
+      },
+      {
+        title: { pt: "Relatórios", en: "Reports", es: "Informes" },
+        text: {
+          pt: "Gastos por categoria, receitas contra despesas, histórico de saldo, ritmo de gastos no mês e gastos por dia da semana.",
+          en: "Spending by category, income versus expenses, balance history, monthly spending pace and spending by weekday.",
+          es: "Gastos por categoría, ingresos frente a gastos, historial de saldo, ritmo de gasto del mes y gastos por día de la semana.",
+        },
+      },
+      {
+        title: { pt: "Modo privacidade", en: "Privacy mode", es: "Modo privacidad" },
+        text: {
+          pt: "Um botão esconde todos os valores da tela, para abrir o app em público sem expor o saldo.",
+          en: "One button hides every amount on screen, so the app can be opened in public without showing the balance.",
+          es: "Un botón oculta todos los valores de la pantalla, para abrir la app en público sin mostrar el saldo.",
+        },
+      },
+    ],
+    internals: [
+      {
+        pt: "React 19, Vite, TypeScript, Tailwind CSS v4, shadcn/ui e Motion, com TanStack Query no estado do servidor e React Hook Form com Zod nos formulários.",
+        en: "React 19, Vite, TypeScript, Tailwind CSS v4, shadcn/ui and Motion, with TanStack Query for server state and React Hook Form with Zod for forms.",
+        es: "React 19, Vite, TypeScript, Tailwind CSS v4, shadcn/ui y Motion, con TanStack Query para el estado del servidor y React Hook Form con Zod en los formularios.",
+      },
+      {
+        pt: "Gráficos em Chart.js, com cores que acompanham o tema claro ou escuro.",
+        en: "Charts in Chart.js, with colors that follow the light or dark theme.",
+        es: "Gráficos en Chart.js, con colores que siguen el tema claro u oscuro.",
+      },
+      {
+        pt: "Cada funcionalidade tem seus próprios serviços, hooks e schemas. Hoje os serviços usam um backend simulado com latência e sessão, pronto para dar lugar à API real sem mudar as telas.",
+        en: "Each feature has its own services, hooks and schemas. Today the services run on a mock backend with latency and sessions, ready to be swapped for the real API without touching the screens.",
+        es: "Cada funcionalidad tiene sus propios servicios, hooks y schemas. Hoy los servicios usan un backend simulado con latencia y sesión, listo para dar paso a la API real sin cambiar las pantallas.",
+      },
+      {
+        pt: "Contas são arquivadas em vez de excluídas, para não apagar o histórico, e transações excluídas podem ser desfeitas na hora.",
+        en: "Accounts are archived instead of deleted so their history is kept, and deleted transactions can be undone on the spot.",
+        es: "Las cuentas se archivan en lugar de eliminarse, para no borrar el historial, y las transacciones eliminadas se pueden deshacer al instante.",
+      },
+    ],
+  },
+  {
     slug: "abyss",
     name: "Abyss",
     description: {
